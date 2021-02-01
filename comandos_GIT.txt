@@ -1,0 +1,98 @@
+* Version
+    git --version
+
+* Configurar username y correo
+    git config --global user.name "USERNAME"
+    git config --global user.email "EMAIL"
+
+* Ver datos
+    git config --global -l
+
+* Crear repositorio (proyecto) y añadir archivos al STAGE, se debe ir a la ruta donde está el proyecto
+    git init
+    git add .                   <- añade todos en la carpeta
+    git add --all               <- añade todos en la carpeta
+    git add <NOMBRE ARCHIVO>    <- añade archivo especifico
+    git add <NOMBRE CARPETA>/   <- añade carpeta especifica
+    git add <NOMBRE CARPETA>/*.<EXTENSION>   <- añade todos los archivos de una carpeta con extensión específica
+
+* Conocer el estado de los repositorios
+    git status
+
+* Quitar del STAGE archivos y/o carpetas
+    git reset <NOMBRE ARCHIVO>
+    git reset <NOMBRE CARPETA>
+    git reset <NOMBRE CARPETA>/*.<EXTENSION>
+
+* Confirmación de cambios y poner nombre al COMMIT para el historial
+    git commit -m "NOMBRE COMMIT"
+
+* Compara la situación actual de los repositorios con el último commit
+    git diff
+
+* Revertir todos los cambios al último commit
+    git checkout .
+
+* Poner apodos a los comandos
+    git config --global alias.<LETRA/NOMBRE ALIAS> "<COMANDO>"
+
+* Modificar nombre de commit
+    git commit --amend -m "<NOMBRE COMMIT>"
+
+* Modificar archivo
+    git mv <NOMBRE ARCHIVO ANTERIOR>.<EXTENSION> <NOMBRE ARCHIVO NUEVO>.<EXTENSION> 
+
+* Eliminar archivo
+    git rm <NOMBRE ARCHIVO>.<EXTENSION>
+
+* Regresar a commit anterior
+    git reset --soft <ID COMMIT>    <- SIN RESTAURAR ARCHIVOS /CAMBIOS
+    git reset --hard <ID COMMIT>    <- RESTAURANDO ARCHIVOS / CAMBIOS
+    git reset --mixed <ID COMMIT>    <- REGRESA A COMMIT SELECCIONADO CONSERVANDO CAMBIOS EN ARCHIVOS
+
+* Histórico de cambios
+    git log     <- HISTORICO COMMITS
+    git reflog  <- HISTORICO TOTAL
+
+* Ignorar el control de archivos
+    Crear un archivo .gitignore
+    <NOMBRE ARCHIVO>       <- Archivo en específico
+    <NOMBRE>*              <- Todo lo que inicie con ese nombre
+    /<NOMBRE CARPETA>/     <- Todo lo que incluya la carpeta
+
+* Mostrar cambios de forma lineal
+    git log --oneline --decorate --all --graph
+
+
+**************************** RAMAS
+
+
+* Nueva rama
+    git brach <Nombre Rama>
+
+* Cambiar de rama
+    git checkout <Nombre rama>
+
+* Unir ramas (Tiene que ser desde la master y en la secundaria debe existir por lo menos un commit)
+    git merge <Nombre de la rama a unir > 
+
+* Eliminar rama que no se utiliza
+    git branch -d <Nombre rama>
+
+* Nueva rama e iniciar desde ella
+    git checkout -b <nombre rama>
+
+
+**************************** ETIQUETAS
+
+
+* Nueva etiqueta
+    git tag <NOMBRE ETIQUETA>       <- Se asigna al último COMMIT y rama
+    git tag -a <NOMBRE ETIQUETA>    <- Agregar etiqueta con detalles adicionales
+    git tag -a <VERSION> <ID COMMIT> -m "<NOMBRE TAG>"
+
+* Borrar etiqueta
+    git tag -d <NOMBRE TAG> 
+
+* Mostrar etiqueta con todos los detalles
+    git show <NOMBRE TAG>
