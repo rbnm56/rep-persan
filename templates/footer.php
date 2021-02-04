@@ -4,7 +4,7 @@
       Imagen Persan
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">Persan</a>.</strong> Todos los derechos reservados.
   </footer>
 
   </div>
