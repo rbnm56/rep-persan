@@ -45,7 +45,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="users-admin.php" class="nav-link">
                   <i class="far fa-tools nav-icon"></i>
                   <p> Administración</p>
                 </a>

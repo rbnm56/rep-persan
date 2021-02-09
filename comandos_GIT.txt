@@ -96,3 +96,6 @@
 
 * Mostrar etiqueta con todos los detalles
     git show <NOMBRE TAG>
+
+* Traer archivos actualizados desde repositorio
+    git pull
