@@ -24,5 +24,3 @@
 <script src="plugins/jsgrid/jsgrid.min.js"></script>
 <script src="dist/js/datosgrid.js"></script>
 
-</body>
-</html>
