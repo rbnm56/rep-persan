@@ -1,7 +1,16 @@
 <?php
+  
   include_once 'templates/header.php';
+  include_once 'functions/functions.php';
   include_once 'templates/barra.php';
   include_once 'templates/sidebar.php';
+
+if($conn->ping()){
+  echo "conectado";
+}else{
+  echo "No conectado";
+}
+  
 ?>
 
 
@@ -33,7 +42,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <div id="jsGrid1"></div>
+          <div id="jsGrid"></div>
         </div>
         <!-- /.card-body -->
       </div>
