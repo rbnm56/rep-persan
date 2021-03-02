@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/estilos.css">
   <!-- JsGrid -->
   <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">

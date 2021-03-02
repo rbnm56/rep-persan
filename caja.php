@@ -81,7 +81,7 @@ include_once 'templates/sidebar.php';
                         <div class="modal-body">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
+                                    <label for="nombre">Fecha</label>
                                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Escriba el nombre del cliente">
                                 </div>
                                 <div class="form-group">
