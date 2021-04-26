@@ -41,6 +41,28 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item dropdown user-menu">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-user"></i>
+          <span class="badge">Usuario</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <li class="user-header bg-primary">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+            <p>
+              Usuario
+              <small>Administrador</small>
+            </p>
+          </li>
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <a href="#" class="btn btn-default btn-flat"><i class="fas fa-cog"></i> Perfil</a>
+            <a href="login.php?cerrar_sesion=true" class="btn btn-default btn-flat float-right"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->

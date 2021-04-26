@@ -1,19 +1,11 @@
 <?php
-  
+  include_once 'functions/php/sesiones.php';
+  include_once 'dist/db/functions.php';
   include_once 'templates/header.php';
-  include_once 'functions/functions.php';
   include_once 'templates/barra.php';
   include_once 'templates/sidebar.php';
 
-if($conn->ping()){
-  echo "conectado";
-}else{
-  echo "No conectado";
-}
-  
 ?>
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -35,23 +27,33 @@ if($conn->ping()){
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">jsGrid</h3>
+    <div class="card">
+      <div class="row card-header">
+        <div class="col-sm-10">
+          <h3 class="card-title">Lista de Usuarios</h3>
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <div id="jsGrid"></div>
+        <div class="col-sm-2">
+          <button class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
+            <i class="fas fa-plus" ></i>
+            <b>Añadir Usuario</b> 
+          </button> 
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
-    </section>
+      <!-- /.card-header -->
+      <div class="row">
+        <div class="col-md-12">
+          <div id="records_content"></div>
+        </div>
+      </div>
+    </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
+<!-- MODALSaq à`å§lñ34h -->
+<?php
+include_once('functions/php/modalsUsers.php');
+?>
   <!-- Main Footer -->
   <?php
     //  <!-- Control Sidebar -->
@@ -59,7 +61,4 @@ if($conn->ping()){
     //  <!-- Footer-->
     include_once 'templates/footer.php'
   ?>
-
-
-
 
