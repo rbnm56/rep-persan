@@ -1,13 +1,15 @@
 <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Imagen Persan
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 <a href="https://adminlte.io">Persan</a>.</strong> Todos los derechos reservados.
-  </footer>
+  <!-- To the right -->
+  <div class="float-right d-none d-sm-inline">
+
+    <img src="dist/img/PersanTaltikLogo.jpg" >
 
   </div>
+  <!-- Default to the left -->
+  <strong>Copyright &copy; 2021 <a href="#">Persan</a>.</strong> Todos los derechos reservados.
+</footer>
+
+</div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
@@ -20,6 +22,7 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
+<<<<<<< HEAD
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -39,3 +42,9 @@
 <script src="functions/js/admin-ajax.js"></script>
 </body>
 </html>
+=======
+<!-- Jsgrid -->
+<script src="plugins/jsgrid/demos/db.js"></script>
+<script src="plugins/jsgrid/jsgrid.min.js"></script>
+<script src="dist/js/datosgrid.js"></script>
+>>>>>>> 2874cc49dddac05f6d7d542fae629c900ca2d557
