@@ -22,7 +22,6 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/demo.js"></script>
-<<<<<<< HEAD
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -42,9 +41,3 @@
 <script src="functions/js/admin-ajax.js"></script>
 </body>
 </html>
-=======
-<!-- Jsgrid -->
-<script src="plugins/jsgrid/demos/db.js"></script>
-<script src="plugins/jsgrid/jsgrid.min.js"></script>
-<script src="dist/js/datosgrid.js"></script>
->>>>>>> 2874cc49dddac05f6d7d542fae629c900ca2d557
