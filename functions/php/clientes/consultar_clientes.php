@@ -49,12 +49,12 @@ try {
                 <div class=row>
                     <!-- EDIT BUTTON-->
                     <div class="col-md-6">
-                        <button onclick="detallesCliente(' . $row['cliente_id'] . ')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
+                        <button onclick="detallesCliente(' . $row['cliente_id'] . ')" class="btn btn-outline-info "><i class="fas fa-edit"></i></button>
                     </div>
                                     
                     <!-- DELETE BUTTON -->
                     <div class="col-md-6">
-                        <button onclick="eliminarCliente(' . $row['cliente_id'] . ')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
+                        <button onclick="eliminarCliente(' . $row['cliente_id'] . ')" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
                 </div>
