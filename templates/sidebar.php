@@ -59,6 +59,29 @@
             </ul>
           </li>
           <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+              Clientes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="clientes.php" class="nav-link">
+                  <i class="far fa-tools nav-icon"></i>
+                  <p> Listar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-chart-pie nav-icon"></i>
+                  <p> Reportes</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
             <a href="ventas.php" class="nav-link">
               <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
@@ -112,14 +135,6 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="clientes.php" class="nav-link">
-            <i class="nav-icon fas fa-user-circle"></i>
-              <p>
-                Clientes
-              </p>
-            </a>
           </li>
           <li class="nav-item">
             <a href="caja.php" class="nav-link">

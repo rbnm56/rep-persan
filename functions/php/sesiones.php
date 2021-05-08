@@ -12,5 +12,5 @@
 
     session_start();
     usuario_autenticado();
-?>
-
+    
+    $se_id_usuario      = isset($_SESSION["id"])?$_SESSION["id"]:"";

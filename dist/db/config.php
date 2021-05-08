@@ -1,5 +1,5 @@
 <?php
-    $connect = new mysqli('localhost', 'root', '', 'persanv1');
+    $connect = new mysqli('localhost', 'root', 'root', 'persanv1');
 
     if($connect->connect_error){
         echo $error -> $connect->connect_error;

@@ -155,6 +155,7 @@ elseif(isset($_POST['login-admin'])){
                     session_start();
                     $_SESSION['username'] = $username;
                     $_SESSION['nombre'] = $nombre_usuario;
+                    $_SESSION['id'] = $usuario_id;
                     $respuestaLogin = [
                         "respuesta" => "exitoso",
                         "usuario" => $username,

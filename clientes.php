@@ -1,4 +1,6 @@
 <?php
+include_once 'functions/php/sesiones.php';
+include_once 'dist/db/functions.php';
 include_once 'templates/header.php';
 include_once 'templates/barra.php';
 include_once 'templates/sidebar.php';
@@ -13,9 +15,6 @@ include_once 'templates/sidebar.php';
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Administración de Clientes</h1>
-                    <button type="button" class="btn btn-primary" id="btnAbrirAgregar">
-                        Nuevo
-                    </button>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,83 +30,27 @@ include_once 'templates/sidebar.php';
     <!-- Main content -->
     <section class="content">
         <div class="card">
-            <div class="card-header">
-                <div class="row mb-2">
-                    <div class="col-sm-8">
-                        <h2 class="card-title">Clientes Existentes</h2>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group ">
-                            <input type="search" class="form-control form-control-md" placeholder="Type your keywords here">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-md btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row card-header">
+                <div class="col-sm-10">
+                    <h3 class="card-title">Lista de Usuarios</h3>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" id="btnAbrirAgregar" class="btn btn-block btn-primary btn-xs">
+                        <i class="fas fa-plus"></i>
+                        <b>Nuevo Cliente</b>
+                    </button>
                 </div>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Dirección </th>
-                            <th>Telefono</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoClientes"></tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-
-        <div class="modal fade" id="modalAgregar">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Cliente Nuevo</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form role="form" method="post" action="clientes/nuevo.php" name="agregarCliente" target="_blank">
-                        <div class="modal-body">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Escriba el nombre del cliente">
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellidos">Apellidos</label>
-                                    <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Escriba los apellidos del cliente">
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Escriba los telefono del cliente">
-                                </div>
-                                <div class="form-group">
-                                    <label for="direccion">Dirección</label>
-                                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Escriba los direccion del cliente">
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-success" name="btnGuardar" id="btnGuardar">Guardar</button>
-                        </div>
-                    </form>
+            <!-- /.card -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="contenido"  class="card-body table-responsive p-0"></div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
+        <?php
+        include_once('functions/php/clientes/modal.php');
+        ?>
     </section>
     <!-- /.content -->
 </div>
@@ -120,7 +63,7 @@ include_once 'templates/sidebar-right.php';
 //  <!-- Footer-->
 include_once 'templates/footer.php'
 ?>
-<script src="funciones/clientes.js"></script>
+<script src="functions/js/clientes.js"></script>
 </body>
 
 </html>

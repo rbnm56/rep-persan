@@ -1,9 +1,9 @@
 <?php
-include_once 'functions/php/sesiones.php';
-include_once 'dist/db/functions.php';
+include("../../../dist/db/functions.php");
+include("../../../functions/php/sesiones.php");
 $array_response = array('exito' => FALSE, 'mensaje' => 'Error al insertar los datos');
 
-if (isset($_POST)) {
+if (isset($_POST) && !empty($_POST['nombre']) && !empty($_POST['telefono']) && !empty($_POST['direccion'])) {
     $nombre = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $telefono = $_POST['telefono'];
@@ -14,8 +14,8 @@ if (isset($_POST)) {
 
 
     try {
-        $res = insertar("id_usuario, correo_cliente, nombre_cliente, apellido_cliente, direccion_cliente, es_preferencial, es_mayorista", "cliente", "$se_id_usuario, 
-        '$correo', '$nombre', '$apellidos', '$direccion', $preferente, $mayorista", true);
+        $res = insertar("id_usuario, correo_cliente, nombre_cliente, apellido_cliente,  telefono, direccion_cliente, es_preferencial, es_mayorista", "cliente", "$se_id_usuario, 
+        '$correo', '$nombre', '$apellidos', $telefono, '$direccion', $preferente, $mayorista", false);
 
         if ($res) {
             $array_response['exito'] = TRUE;
@@ -25,4 +25,7 @@ if (isset($_POST)) {
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
+} else {
+    $array_response = array('exito' => FALSE, 'mensaje' => 'Faltan datos necesarios');
+    echo json_encode($array_response);
 }
