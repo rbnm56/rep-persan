@@ -32,13 +32,7 @@ include_once 'templates/sidebar.php';
         <div class="card">
             <div class="row card-header">
                 <div class="col-sm-10">
-                    <h3 class="card-title">Lista de Usuarios</h3>
-                </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary" id="btnAbrirAgregar" class="btn btn-block btn-primary btn-xs">
-                        <i class="fas fa-plus"></i>
-                        <b>Nuevo Cliente</b>
-                    </button>
+                    <h3 class="card-title">Lista de Clientes</h3>
                 </div>
             </div>
             <!-- /.card -->
