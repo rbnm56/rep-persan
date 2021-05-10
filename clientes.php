@@ -34,11 +34,17 @@ include_once 'templates/sidebar.php';
                 <div class="col-sm-10">
                     <h3 class="card-title">Lista de Clientes</h3>
                 </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-block btn-primary btn-sm" id="btnAgregarCliente">
+                        <i class="fas fa-plus"></i>
+                        <b>Añadir Cliente</b>
+                    </button>
+                </div>
             </div>
             <!-- /.card -->
             <div class="row">
                 <div class="col-md-12">
-                    <div id="contenido"  class="card-body table-responsive p-0"></div>
+                    <div id="contenido" class="card-body table-responsive p-0"></div>
                 </div>
             </div>
         </div>

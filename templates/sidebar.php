@@ -69,13 +69,13 @@
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="clientes.php" class="nav-link">
-               <i class="far fas fa-file-alt nav-icon"></i>
+               <i class="far fas fa-list-ol nav-icon"></i>
                  <p> Todos</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="#" class="nav-link"  id="btnAbrirAgregar">
-                 <i class="far fas fa-plus nav-icon"></i>
+               <a href="#" class="nav-link" >
+                 <i class="far fas fa-plus-circle nav-icon"></i>
                  <p>Nuevo</p>
                </a>
              </li>

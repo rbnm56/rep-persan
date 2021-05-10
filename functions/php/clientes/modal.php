@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalAgregar">
+<div class="modal fade" id="modalAgregarCliente">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" name="btnGuardar" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-success" name="btnGuardarCliente" id="btnGuardarCliente">Guardar</button>
                 </div>
             </form>
         </div>
@@ -77,7 +77,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<div class="modal fade" id="modalEditar">
+<div class="modal fade" id="modalEditarCliente">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -87,7 +87,7 @@
                 </button>
             </div>
             <div id="statusMsgClientEditar"></div>
-            <form role="form" method="post" action="#" name="agregarCliente" target="_blank">
+            <form role="form" method="post" action="#" name="editarCliente" target="_blank">
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
@@ -148,7 +148,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" name="btnEditar" id="btnEditar">Editar</button>
+                    <button type="button" class="btn btn-success" name="btnEditarCliente" id="btnEditarCliente">Guardar</button>
                     <input type="hidden" id="id_cliente">
                 </div>
             </form>

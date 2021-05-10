@@ -1,13 +1,10 @@
 $(document).ready(function () {
     llenar();
 });
-$('#btnAbrirAgregar').click(function () {
-    $('#modalAgregar').modal('show');
+$('#btnAgregarCliente').click(function () {
+    $('#modalAgregarCliente').modal('show');
 });
-$('#btnAbrirEditar').click(function () {
-    $('#modalEditar').modal('show');
-});
-$('#btnGuardar').click(function (e) {
+$('#btnGuardarCliente').click(function (e) {
     $('#statusMsgClient').hide();
     var nombre = $("#nombre").val();
     var apellidos = $("#apellidos").val();
@@ -61,7 +58,7 @@ $('#btnGuardar').click(function (e) {
                     showConfirmButton: false,
                     timer: 2500
                 });
-                $("#modalAgregar").modal("hide");
+                $("#modalAgregarCliente").modal("hide");
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -72,7 +69,7 @@ $('#btnGuardar').click(function (e) {
             }
         })
 });
-$('#btnEditar').click(function (e) {
+$('#btnEditarCliente').click(function (e) {
     $('#statusMsgClientEditar').hide();
     var nombre = $("#nombreEditar").val();
     var apellidos = $("#apellidosEditar").val();
@@ -128,7 +125,7 @@ $('#btnEditar').click(function (e) {
                     showConfirmButton: false,
                     timer: 2500
                 });
-                $("#modalEditar").modal("hide");
+                $("#modalEditarCliente").modal("hide");
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -159,7 +156,7 @@ function detallesCliente(id) {
         }
     );
     // Open modal popup
-    $("#modalEditar").modal("show");
+    $("#modalEditarCliente").modal("show");
 }
 function eliminarCliente(id) {
     Swal.fire({
