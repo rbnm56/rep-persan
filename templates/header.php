@@ -18,11 +18,8 @@
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-<<<<<<< HEAD
-=======
   <link rel="stylesheet" href="dist/css/estilos.css">
   <!-- JsGrid -->
   <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
   <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">
->>>>>>> a70c0403002717323f30e61bfef12ae84110a081
 </head>
