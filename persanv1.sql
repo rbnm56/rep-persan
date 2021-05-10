@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-02-2021 a las 01:26:29
+-- Tiempo de generación: 10-05-2021 a las 20:13:13
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.33
 
@@ -212,13 +212,13 @@ CREATE TABLE `unidades` (
 CREATE TABLE `usuarios` (
   `usuario_id` int(11) NOT NULL,
   `username` varchar(15) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
   `apellido_usuario` varchar(50) NOT NULL,
   `telefono` bigint(11) NOT NULL,
   `direccion` text DEFAULT NULL,
-  `id_sucursal` int(11) NOT NULL,
-  `id_permiso` int(11) NOT NULL
+  `id_sucursal` int(11) DEFAULT NULL,
+  `id_permiso` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -226,7 +226,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `username`, `password`, `nombre_usuario`, `apellido_usuario`, `telefono`, `direccion`, `id_sucursal`, `id_permiso`) VALUES
-(1, 'aledo301', '123456', 'Ruben', 'Mendoza', 211532584, 'Nogales 15509', 1, 1);
+(1, 'ruben.mendoza', '$2y$12$ZdY8Qr58UlbaBHJsWZ5Q6Onp3nMi/XNbUDtO0874uDOpqpf7Su66G', 'Alejandro', 'Mendoza', 2211532584, 'Nogales 15509', 1, 1),
+(17, 'admin', '$2y$12$jRYSuwAFCesUYuP7Wb5g4eItCxTKKwOeKodUA6YGfNLhcFZsL/cE6', 'Ruben Alejandro', 'Mendoza', 2211532584, 'Nogales 15509', NULL, NULL),
+(18, 'admin2', '$2y$12$Hw7BIf9TPjhQwGwpiXexi.Gah/qlI2LF.4eHw1mxtKUoMOlf2Y3Hu', 'Alejandro', 'Dominguez', 2222889988, 'Centro', NULL, NULL),
+(30, 'lore.santamaria', '$2y$12$zNHblkIBDH8ehRsHjEkW7.M7od/tB1iMRC9MO2FNZGJBCVkDVwkom', 'Lorena', 'Santamaria', 555555555, '38 sur', NULL, NULL),
+(33, 'sara.dominguez', '$2y$12$HfXyM9cqaNorQZFuzq9.sOjgv2x9bVK.wnk6O0N7995O/UnDw095S', 'Sara', 'Dominguez', 2221938919, 'Centro', NULL, NULL),
+(83, 'usuario.prueba7', '$2y$12$J.znGmCVZhZR7PSJDnRnbuluen4V1AA6soHzXI/T.7hmQpmRqiOF.', 'Usuario', 'Prueba', 2233333887, 'San ramon', 1, 1),
+(101, 'usuario.test', '$2y$12$zp7bUHRXGRlqwU85A/WRP.wE8hbX9gUDKIuVo7OMbgBMgGucA.OAO', 'Prueba', 'Prueba', 66666666, 'Feliciano', 1, 1),
+(111, 'roger.huesca', '$2y$12$4tLSs9amYn4PIVi/HFxcnur11TeB2KIEuWXNbEgNp43xcbmH2iPKC', 'Roger', 'Huesca', 22222222, 'uuuuuuuu', 1, 1),
+(118, 'ruben.mend', '$2y$12$X0o/FXiNkWm2JNwj69Y2rus.xGDp4FRGoNvRu8poGjDG5cFujK7aS', 'Ruben', 'Mendoza', 222222222, 'Nogales', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -340,6 +348,7 @@ ALTER TABLE `unidades`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuario_id`),
+  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `id_sucursal` (`id_sucursal`),
   ADD KEY `id_permiso` (`id_permiso`);
 
@@ -426,7 +435,7 @@ ALTER TABLE `unidades`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
