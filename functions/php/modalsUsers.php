@@ -1,9 +1,11 @@
+
+
 <!-- Bootstrap Modals --> 
 <!-- Modal - Add New Record/User -->
+<form id="addForm" method="post" action="">
 <div class="modal fade" id="add_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-   
       <div class="modal-header">
         <h5 class="modal-title">Nuevo Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,13 +14,19 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-sm-6 form-group">
+          <div class="col-sm-12 form-group">
             <label for="username" class="col-form-label">Username:</label>
-            <input type="text" class="form-control" name="username" id="username">
+            <input type="text" class="form-control" name="username" id="username" required/>
           </div>
+        </div>
+        <div class="row">
           <div class="col-sm-6 form-group">
             <label for="password" class="col-form-label">Contraseña:</label>
             <input type="password" class="form-control" name="password" id="password">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="passwordConfirm" class="col-form-label">Confirmar contraseña:</label>
+            <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm">
           </div>
         </div>
         <div class="row">
@@ -30,6 +38,8 @@
             <label for="apellido_usuario" class="col-form-label">Apellido (s)</label>
             <input type="text" class="form-control" name="apellido_usuario" id="apellido_usuario">
           </div>
+          <div class="col-sm-3">
+		      </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
@@ -58,14 +68,17 @@
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" onclick="addRecord()">Agregar</button>
+          <button type="" class="btn btn-primary submit" value="Submit" >Agregar</button>
+          <!-- <input class="submit" type="submit" value="Submit" onclick="addRecord()"> -->
         </div>
+        </form>
     </div>
   </div>
 </div>
-<!-- // Modal --> 
 
 <!-- Modal - Update User details -->
+
+<form id="editForm" method="get" action="">
 <div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -80,13 +93,19 @@
       
       <div class="modal-body">
         <div class="row">
-          <div class="col-sm-6 form-group">
+          <div class="col-sm-12 form-group">
             <label for="usernameEdit" class="col-form-label">Username:</label>
             <input type="text" class="form-control" name="usernameEdit" id="usernameEdit">
           </div>
+        </div>
+        <div class="row">
           <div class="col-sm-6 form-group">
             <label for="passwordEdit" class="col-form-label">Contraseña:</label>
             <input type="password" class="form-control" name="passwordEdit" id="passwordEdit">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="passwordConfirmEdit" class="col-form-label">Confirmar contraseña:</label>
+            <input type="password" class="form-control" name="passwordConfirmEdit" id="passwordConfirmEdit">
           </div>
         </div>
         <div class="row">
@@ -126,8 +145,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Guardar Cambios</button>
+        <!-- <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Guardar Cambios</button> -->
+        <button type="submit" class="btn btn-primary submit" value="Submit" >Guardar Cambios</button>
         <input type="hidden" id="hidden_user_id">
+        </form>
       </div>
     </div>
   </div>

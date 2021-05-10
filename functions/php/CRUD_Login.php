@@ -12,7 +12,7 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
     $apellido_usuario = $_POST['apellido_usuario'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
-/*     $sucursal = $_POST['sucursal'];
+/*  $sucursal = $_POST['sucursal'];
     $permiso = $_POST['permiso']; */
     
     $opciones = array(
@@ -21,19 +21,48 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
 
     $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
-    try{
+    /* try{ */
         // include Database connection file
         include_once("../../dist/db/functions.php");
         $query = "INSERT INTO usuarios(username, password, nombre_usuario, apellido_usuario, telefono, direccion, id_sucursal, id_permiso) VALUES('$username', '$password_hashed', '$nombre_usuario', '$apellido_usuario', '$telefono', '$direccion', 1, 1)";
         
-        if (!$result = mysqli_query($connect, $query)) {
+        /* if (!$result = mysqli_query($connect, $query)) {
             exit(mysqli_error($connect));
         }
-        $connect->close();
+ */
+        /* $result = mysqli_query($connect, $query); */
+        /* $id_registro = $result->insert_id;
+        if(mysqli_num_rows($result) > 0){
+            $response = array(
+                'respuesta' => 'exito',
+                'id_admin' => $id_registro
+            );
+            
+        }else{
+            $response = array(
+                'respuesta' => 'error',
+                'id_admin' => $id_registro
+            );
+        }
+        echo json_encode($response); */
+        
+        if ($connect->query($query) === TRUE) {
+            $response = [
+                'respuesta' => 'exito'
+            ];
+          } else {
+            $response = array(
+                'respuesta' => 'error'
+            );
+          }
+        echo json_encode($response);
 
-    }catch (Exception $e){
+        //$result->close();
+        $connect->close();
+    /* }catch (Exception $e){
         echo "Error: " . $e->getMessage();
-    }
+    } */
+    
 }
 //show Records
 elseif($funcionGET == "readRecords"){
@@ -50,9 +79,19 @@ elseif($funcionPOST == "DeleteUser" && isset($_POST['id']) && isset($_POST['id']
     try{
         include_once("../../dist/db/functions.php");
         $query = "DELETE FROM usuarios WHERE usuario_id = '$user_id'";
-        if (!$result = mysqli_query($connect, $query)) {
+        /* if (!$result = mysqli_query($connect, $query)) {
             exit(mysqli_error($connect));
-        }
+        } */
+        if ($connect->query($query) === TRUE) {
+            $response = [
+                'respuesta' => 'exito'
+            ];
+          } else {
+            $response = array(
+                'respuesta' => 'error'
+            );
+          }
+        echo json_encode($response);
         $connect->close();
     }catch(Exception $e){
         echo "Error: " . $e->getMessage(); 
@@ -129,9 +168,28 @@ elseif($funcionPOST == "UpdateUserDetails"){
         try{
             include_once("../../dist/db/functions.php");
             $query = "UPDATE usuarios SET username='$username', password='$password_hashed', nombre_usuario='$nombre_usuario', username='$username', apellido_usuario='$apellido_usuario', telefono='$telefono', direccion='$direccion' WHERE usuario_id = '$id'";
-            if (!$result = mysqli_query($connect, $query)) {
+            /* if (!$result = mysqli_query($connect, $query)) {
                 exit(mysqli_error($connect));
-            }
+                $response = [
+                    'respuesta' => 'exito',
+                    'id_admin' => $id_registro
+                ]; 
+            }else{
+                $response = array(
+                    'respuesta' => 'error',
+                    'id_admin' => $id_registro
+                );
+            } */
+            if ($connect->query($query) === TRUE) {
+                $response = [
+                    'respuesta' => 'exito'
+                ];
+              } else {
+                $response = array(
+                    'respuesta' => 'error'
+                );
+              }
+            echo json_encode($response);
             $connect->close();
         }catch(Exception $e){
             echo "Error: " . $e->getMessage(); 
