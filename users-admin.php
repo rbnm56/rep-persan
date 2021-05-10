@@ -6,6 +6,7 @@
   include_once 'templates/sidebar.php';
 
 ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,6 +33,7 @@
         <div class="col-sm-10">
           <h3 class="card-title">Lista de Usuarios</h3>
         </div>
+        
         <div class="col-sm-2">
           <button class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
             <i class="fas fa-plus" ></i>
@@ -61,6 +63,7 @@ include_once('functions/php/modalsUsers.php');
     //  <!-- Footer-->
     include_once 'templates/footer.php'
   ?>
+
 
 
 

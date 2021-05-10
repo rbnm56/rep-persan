@@ -15,14 +15,7 @@
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-<<<<<<< HEAD
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-=======
-  <link rel="stylesheet" href="dist/css/estilos.css">
-  <!-- JsGrid -->
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">
->>>>>>> 2874cc49dddac05f6d7d542fae629c900ca2d557
 </head>
