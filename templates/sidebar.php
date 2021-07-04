@@ -35,7 +35,7 @@
        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-users"></i>
              <p>
@@ -46,19 +46,13 @@
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="users-admin.php" class="nav-link">
-                 <i class="far fa-tools nav-icon"></i>
+                 <i class="far fa-circle nav-icon"></i>
                  <p> Administración</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
                </a>
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-user-circle"></i>
              <p>
@@ -81,16 +75,7 @@
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
-           <a href="ventas.php" class="nav-link">
-             <i class="nav-icon fas fa-dollar-sign"></i>
-             <p>
-               Ventas
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
-         </li>
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon far fa-file-alt"></i>
              <p>
@@ -113,7 +98,7 @@
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-clipboard-list"></i>
              <p>
@@ -124,26 +109,65 @@
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="items-admin.php" class="nav-link">
-                 <i class="far fa-tools nav-icon"></i>
+                 <i class="far fa-circle nav-icon"></i>
                  <p> Administración</p>
                </a>
              </li>
              <li class="nav-item">
                <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Inventario</p>
                </a>
              </li>
            </ul>
          </li>
          <li class="nav-item">
-           <a href="caja.php" class="nav-link">
-             <i class="nav-icon fas fa-plus"></i>
+           <a href="#" class="nav-link">
+             <i class="nav-icon fa fa-dollar-sign"></i>
              <p>
-               Caja
+               Ventas
+               <i class="right fas fa-angle-left"></i>
              </p>
            </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p> Administración</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Repotes</p>
+               </a>
+             </li>
+           </ul>
          </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="nav-icon fa fa-cash-register"></i>
+             <p>
+               Caja
+               <i class="right fas fa-angle-left"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p> Administración</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Reportes</p>
+               </a>
+             </li>
+           </ul>
+         </li>
+
        </ul>
      </nav>
      <!-- /.sidebar-menu -->
