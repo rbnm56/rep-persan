@@ -57,7 +57,7 @@ function addRecord() {
     var permiso = $("#permiso").val(); 
 
     // Add record
-    $.post("functions/php/CRUD_Login.php", {
+    $.post("functions/php/usuarios/CRUD_Login.php", {
         funcion: "addRecord", 
         username: username,
         password: password,
@@ -108,7 +108,7 @@ function addRecord() {
 // READ records
 function readRecords() {
 
-    $.get("functions/php/CRUD_Login.php", {
+    $.get("functions/php/usuarios/CRUD_Login.php", {
         funcion: 'readRecords'
     }, function (data, status) {
         $("#records_content").html(data);
@@ -129,7 +129,7 @@ function DeleteUser(id) {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            $.post("functions/php/CRUD_Login.php", {
+            $.post("functions/php/usuarios/CRUD_Login.php", {
                 funcion: "DeleteUser",
                 id: id
             },
@@ -154,7 +154,7 @@ function DeleteUser(id) {
 function GetUserDetails(id) {
     // Add User ID to the hidden field for furture usage
     $("#hidden_user_id").val(id);
-    $.post("functions/php/CRUD_Login.php", {
+    $.post("functions/php/usuarios/CRUD_Login.php", {
             funcion: "GetUserDetails", 
             id: id
         },
@@ -195,7 +195,7 @@ function UpdateUserDetails() {
     var id = $("#hidden_user_id").val();
 
     // Update the details by requesting to the server using ajax
-    $.post("functions/php/CRUD_Login.php", {
+    $.post("functions/php/usuarios/CRUD_Login.php", {
             funcion: "UpdateUserDetails",
             id: id,
             username: username,

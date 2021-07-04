@@ -1,6 +1,6 @@
 <?php
 include("../../../dist/db/functions.php");
-include("../../../functions/php/sesiones.php");
+include("../../../functions/php/usuarios/sesiones.php");
 $array_response = array('exito' => FALSE, 'mensaje' => 'Error al eliminar al cliente');
 
 if (isset($_POST) && !empty($_POST['id'])) {

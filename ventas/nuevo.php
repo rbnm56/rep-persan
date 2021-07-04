@@ -1,5 +1,5 @@
 <?php
-include_once 'functions/php/sesiones.php';
+include_once 'functions/php/usuarios/sesiones.php';
 include_once 'dist/db/functions.php';
 $array_response = array('exito' => FALSE, 'mensaje' => 'Error al insertar los datos');
 
