@@ -121,11 +121,9 @@ function DeleteUser(id) {
         title: '¿Confirmas la eliminación del usuario?',
         text: "La acción no podrá ser revertida",
         icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        showCloseButton: true,
+        confirmButtonColor: '#008f39',
         confirmButtonText: 'Continuar',
-        cancelButtonText: 'Cancelar'
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
