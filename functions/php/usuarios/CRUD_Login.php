@@ -23,7 +23,7 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
 
     try{
         // include Database connection file
-        include_once("../../dist/db/functions.php");
+        include_once("../../../dist/db/functions.php");
         $query = "INSERT INTO usuarios(username, password, nombre_usuario, apellido_usuario, telefono, direccion, id_sucursal, id_permiso) VALUES('$username', '$password_hashed', '$nombre_usuario', '$apellido_usuario', '$telefono', '$direccion', $sucursal, $permiso)";
         
         if ($connect->query($query) == TRUE) {
@@ -56,7 +56,7 @@ elseif($funcionPOST == "DeleteUser" && isset($_POST['id']) && isset($_POST['id']
     $user_id = $_POST['id'];
     // delete User
     try{
-        include_once("../../dist/db/functions.php");
+        include_once("../../../dist/db/functions.php");
         $query = "DELETE FROM usuarios WHERE usuario_id = '$user_id'";
 
         if ($connect->query($query) === TRUE) {
@@ -84,7 +84,7 @@ else if($funcionPOST == "GetUserDetails"){
         $user_id = $_POST['id'];
 
         // Get User Details
-        include_once("../../dist/db/functions.php");
+        include_once("../../../dist/db/functions.php");
         try{
             $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id WHERE usuario_id = '$user_id' ";
 
@@ -146,7 +146,7 @@ elseif($funcionPOST == "UpdateUserDetails"){
 
         // Update User details
         try{
-            include_once("../../dist/db/functions.php");
+            include_once("../../../dist/db/functions.php");
             $query = "UPDATE usuarios SET username='$username', password='$password_hashed', nombre_usuario='$nombre_usuario', username='$username', apellido_usuario='$apellido_usuario', telefono='$telefono', direccion='$direccion', id_sucursal = '$sucursal', id_permiso='$permiso' WHERE usuario_id = '$id'";
 
             if ($connect->query($query) === TRUE) {
@@ -171,7 +171,7 @@ elseif(isset($_POST['login-admin'])){
     $username = $_POST['username'];
     $password_local = $_POST['password'];
     try{
-        include_once '../../dist/db/functions.php';
+        include_once '../../../dist/db/functions.php';
         $stmt = $connect->prepare("SELECT usuario_id, username, password, nombre_usuario, apellido_usuario FROM usuarios WHERE username = '$username'");
         $stmt->execute();
         $stmt->bind_result($usuario_id, $username, $password, $nombre_usuario, $apellido_usuario);

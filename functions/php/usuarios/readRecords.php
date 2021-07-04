@@ -3,7 +3,7 @@
 error_reporting(E_ALL ^ E_NOTICE);
 try{
     // include Database connection file 
-    include("../../dist/db/functions.php");
+    include("../../../dist/db/functions.php");
 
 	// Design initial table header 
     $data = '<table id="example1" class="table table-bordered table-striped">
