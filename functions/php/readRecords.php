@@ -22,7 +22,7 @@ try{
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM usuarios";
+    $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -41,8 +41,8 @@ try{
                 <td>'.$row['apellido_usuario'].'</td>
                 <td>'.$row['telefono'].'</td>
 				<td>'.$row['direccion'].'</td>
-                <td>'.$row['id_sucursal'].'</td>
-                <td>'.$row['id_permiso'].'</td>
+                <td>'.$row['nombre_sucursal'].'</td>
+                <td>'.$row['nombre_permiso'].'</td>
                 <td>
                 <div class=row>
                     <!-- EDIT BUTTON-->
@@ -87,25 +87,73 @@ try{
     echo $data;
 }catch(Exception $e){
     echo "Error: " . $e->getMessage();
-
 }
-?>
 
+
+?>
 
 <script>
   $(function () {
+  
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
+      
+      //dom: '<"row" <"col-sm-6"B> <"col-sm-6"<"selectTable"f>>> rtip',
+        buttons: [
+            'copy',
+            'print',
+            'excel',
+            'pdf',
+            'colvis'
+            
+        ],
+
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
       "responsive": true,
-    });
+
+      language: {
+        "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "l_MENU_l",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "<i class='fa fa-search'></i>",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        },
+        buttons: {
+          copy: "<abbr title='Copiar'><i class='fa fa-copy'></i></abbr>",
+          copyTitle: 'Copiado',
+          copySuccess: {
+            _: '%d Usuarios copiados a portapapeles',
+            1: '1 Usuario copiado'
+          },
+          print: "<abbr title='Imprimir'><i class='fa fa-print'></i></abbr>",
+          excel: "<i class='fa fa-file-excel'></i>",
+          pdf: "<i class='fa fa-file-pdf'></i>",
+          colvis: "<i class='fa fa-columns'></i>"
+          
+    },
+        
+  }
+  ,
+
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
+
+
 </script>
+

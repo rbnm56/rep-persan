@@ -17,9 +17,4 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
-  <link rel="stylesheet" href="dist/css/estilos.css">
-  <!-- JsGrid -->
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">
 </head>

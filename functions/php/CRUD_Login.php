@@ -12,8 +12,8 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
     $apellido_usuario = $_POST['apellido_usuario'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
-/*  $sucursal = $_POST['sucursal'];
-    $permiso = $_POST['permiso']; */
+    $sucursal = ((int)$_POST['sucursal']) + 1;
+    $permiso = ((int)$_POST['permiso']) + 1;
     
     $opciones = array(
         'cost' => 12
@@ -21,47 +21,26 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
 
     $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
-    /* try{ */
+    try{
         // include Database connection file
         include_once("../../dist/db/functions.php");
-        $query = "INSERT INTO usuarios(username, password, nombre_usuario, apellido_usuario, telefono, direccion, id_sucursal, id_permiso) VALUES('$username', '$password_hashed', '$nombre_usuario', '$apellido_usuario', '$telefono', '$direccion', 1, 1)";
+        $query = "INSERT INTO usuarios(username, password, nombre_usuario, apellido_usuario, telefono, direccion, id_sucursal, id_permiso) VALUES('$username', '$password_hashed', '$nombre_usuario', '$apellido_usuario', '$telefono', '$direccion', $sucursal, $permiso)";
         
-        /* if (!$result = mysqli_query($connect, $query)) {
-            exit(mysqli_error($connect));
-        }
- */
-        /* $result = mysqli_query($connect, $query); */
-        /* $id_registro = $result->insert_id;
-        if(mysqli_num_rows($result) > 0){
-            $response = array(
-                'respuesta' => 'exito',
-                'id_admin' => $id_registro
-            );
-            
-        }else{
-            $response = array(
-                'respuesta' => 'error',
-                'id_admin' => $id_registro
-            );
-        }
-        echo json_encode($response); */
-        
-        if ($connect->query($query) === TRUE) {
+        if ($connect->query($query) == TRUE) {
             $response = [
                 'respuesta' => 'exito'
             ];
           } else {
-            $response = array(
+            $response = [
                 'respuesta' => 'error'
-            );
+            ];
           }
         echo json_encode($response);
 
-        //$result->close();
         $connect->close();
-    /* }catch (Exception $e){
-        echo "Error: " . $e->getMessage();
-    } */
+   }catch (Exception $e){
+       // echo "Error: " . $e->getMessage();
+    }
     
 }
 //show Records
@@ -79,9 +58,7 @@ elseif($funcionPOST == "DeleteUser" && isset($_POST['id']) && isset($_POST['id']
     try{
         include_once("../../dist/db/functions.php");
         $query = "DELETE FROM usuarios WHERE usuario_id = '$user_id'";
-        /* if (!$result = mysqli_query($connect, $query)) {
-            exit(mysqli_error($connect));
-        } */
+
         if ($connect->query($query) === TRUE) {
             $response = [
                 'respuesta' => 'exito'
@@ -109,14 +86,17 @@ else if($funcionPOST == "GetUserDetails"){
         // Get User Details
         include_once("../../dist/db/functions.php");
         try{
-            $query = "SELECT * FROM usuarios WHERE usuario_id = '$user_id'";
+            $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id WHERE usuario_id = '$user_id' ";
+
+            $response = array();
+
+            //Resultados de consulta ID
             if (!$result = mysqli_query($connect, $query)) {
                 exit(mysqli_error($connect));
             }
-            $response = array();
             if(mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $response = $row;
+                    $response['consulta'] = $row;
                 }
                 $connect->close(); 
             }
@@ -126,6 +106,7 @@ else if($funcionPOST == "GetUserDetails"){
                 $response['status'] = 200;
                 $response['message'] = "Data not found!";
             }
+            
             // display JSON data
 
             echo json_encode($response);
@@ -153,9 +134,8 @@ elseif($funcionPOST == "UpdateUserDetails"){
         $apellido_usuario = $_POST['apellido_usuario'];
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
-    /*     $sucursal = $_POST['sucursal'];
-        $permiso = $_POST['permiso']; */
-    
+        $sucursal = ((int)$_POST['sucursal']) +1;
+        $permiso = ((int)$_POST['permiso']) +1;
     
         $opciones = array(
             'cost' => 12
@@ -164,22 +144,11 @@ elseif($funcionPOST == "UpdateUserDetails"){
         $password_hashed = password_hash($password, PASSWORD_BCRYPT, $opciones);
 
 
-        // Updaste User details
+        // Update User details
         try{
             include_once("../../dist/db/functions.php");
-            $query = "UPDATE usuarios SET username='$username', password='$password_hashed', nombre_usuario='$nombre_usuario', username='$username', apellido_usuario='$apellido_usuario', telefono='$telefono', direccion='$direccion' WHERE usuario_id = '$id'";
-            /* if (!$result = mysqli_query($connect, $query)) {
-                exit(mysqli_error($connect));
-                $response = [
-                    'respuesta' => 'exito',
-                    'id_admin' => $id_registro
-                ]; 
-            }else{
-                $response = array(
-                    'respuesta' => 'error',
-                    'id_admin' => $id_registro
-                );
-            } */
+            $query = "UPDATE usuarios SET username='$username', password='$password_hashed', nombre_usuario='$nombre_usuario', username='$username', apellido_usuario='$apellido_usuario', telefono='$telefono', direccion='$direccion', id_sucursal = '$sucursal', id_permiso='$permiso' WHERE usuario_id = '$id'";
+
             if ($connect->query($query) === TRUE) {
                 $response = [
                     'respuesta' => 'exito'

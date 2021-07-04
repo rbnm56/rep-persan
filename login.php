@@ -56,10 +56,13 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<script src="dist/js/demo.js"></script>
 <!-- SweetAlert2 -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Validate -->
+<script src="dist/js/jquery.validate.js"></script>
+<script src="dist/js/additional-methods.js"></script>
 <!-- Admin AJAX -->
 <script src="functions/js/admin-ajax.js"></script>
+
 </body>
 </html>

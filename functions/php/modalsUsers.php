@@ -1,5 +1,4 @@
 
-
 <!-- Bootstrap Modals --> 
 <!-- Modal - Add New Record/User -->
 <form id="addForm" method="post" action="">
@@ -15,7 +14,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12 form-group">
-            <label for="username" class="col-form-label">Username:</label>
+            <label for="username" class="col-form-label">Nombre de Usuario:</label>
             <input type="text" class="form-control" name="username" id="username" required/>
           </div>
         </div>
@@ -89,16 +88,22 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div> 
-      
-      
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12 form-group">
-            <label for="usernameEdit" class="col-form-label">Username:</label>
+            <label for="usernameEdit" class="col-form-label">Nombre de Usuario:</label>
             <input type="text" class="form-control" name="usernameEdit" id="usernameEdit">
           </div>
         </div>
         <div class="row">
+          <div class="col-sm-12 form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Cambiar Contraseña</label>
+              </div>
+           </div>
+      </div>
+        <div class="row" id="change_pass">
           <div class="col-sm-6 form-group">
             <label for="passwordEdit" class="col-form-label">Contraseña:</label>
             <input type="password" class="form-control" name="passwordEdit" id="passwordEdit">
@@ -133,20 +138,20 @@
             <label for="sucursalEdit" class="col-form-label">Sucursal</label>
             <select class="form-control" name="sucursalEdit" id="sucursalEdit">
               <option value="ninguno">Seleccione</option>
+              <option value="select"></option>
             </select>
           </div>
           <div class="col-sm-6">
             <label for="permisoEdit" class="col-form-label">Permiso</label>
             <select class="form-control" name="permisoEdit" id="permisoEdit">
               <option value="ninguno">Seleccione</option>
+              <option value="select"></option>
             </select>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <!-- <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >Guardar Cambios</button> -->
-        <button type="submit" class="btn btn-primary submit" value="Submit" >Guardar Cambios</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        <button type="submit" class="btn btn-primary submit" value="Submit" >Guardar Cambios</button>
         <input type="hidden" id="hidden_user_id">
         </form>
       </div>

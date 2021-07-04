@@ -35,6 +35,8 @@ $(document).ready(function () {
             }
         })
     });
+
+    
 });
 
 
@@ -44,16 +46,16 @@ $(document).ready(function () {
 // Add Record
 function addRecord() {
      // get values
+    
     var username = $("#username").val();
     var password = $("#password").val();
     var nombre_usuario = $("#nombre_usuario").val();
     var apellido_usuario = $("#apellido_usuario").val();
     var telefono = $("#telefono").val();
     var direccion = $("#direccion").val();
-    /* var sucursal = $("#sucursal").val();
-    var permiso = $("#permiso").val(); */
+    var sucursal = $("#sucursal").val();
+    var permiso = $("#permiso").val(); 
 
-   
     // Add record
     $.post("functions/php/CRUD_Login.php", {
         funcion: "addRecord", 
@@ -63,8 +65,8 @@ function addRecord() {
         apellido_usuario: apellido_usuario,
         telefono: telefono,
         direccion: direccion,
-        /* sucursal: sucursal,
-		permiso: permiso */
+        sucursal: sucursal,
+        permiso: permiso,
     }, function (data, status) {
         // close the popup
             var datos = JSON.parse(data);
@@ -87,8 +89,9 @@ function addRecord() {
                 $("#apellido_usuario").val("");
                 $("#telefono").val("");
                 $("#direccion").val("");
-                /* $("#sucursal").val("");
-                $("#permiso").val(""); */
+                $("#sucursal").val("");
+                $("#permiso").val("");
+
             }else {
                 Swal.fire({
                     icon: 'error',
@@ -147,6 +150,7 @@ function DeleteUser(id) {
       })
 }
 
+
 function GetUserDetails(id) {
     // Add User ID to the hidden field for furture usage
     $("#hidden_user_id").val(id);
@@ -159,14 +163,17 @@ function GetUserDetails(id) {
             var user = JSON.parse(data);
             // Assing existing values to the modal popup fields
             
-            $("#usernameEdit").val(user.username);
-            $("#passwordEdit").val(user.password);
-            $("#nombre_usuarioEdit").val(user.nombre_usuario);
-            $("#apellido_usuarioEdit").val(user.apellido_usuario);
-            $("#telefonoEdit").val(user.telefono);
-            $("#direccionEdit").val(user.direccion);
-            /* $("#sucursalEdit").val(user.sucursal);
-            $("#permisoEdit").val(user.permiso); */
+            $("#usernameEdit").val(user.consulta.username);
+            //$("#passwordEdit").val(user.consulta.password);
+            $("#nombre_usuarioEdit").val(user.consulta.nombre_usuario);
+            $("#apellido_usuarioEdit").val(user.consulta.apellido_usuario);
+            $("#telefonoEdit").val(user.consulta.telefono);
+            $("#direccionEdit").val(user.consulta.direccion);
+            sucursalID = user.consulta.sucursal_id;
+            permisoID = user.consulta.permiso_id;
+            valores("consultaSUC", "sucursalEdit", sucursalID);
+            valores("consultaPERM", "permisoEdit", permisoID);
+            
         }
     );
     // Open modal popup
@@ -176,13 +183,13 @@ function GetUserDetails(id) {
 function UpdateUserDetails() {
     // get values
     var username = $("#usernameEdit").val();
-    //var password = $("#passwordEdit").val();
+    var password = $("#passwordEdit").val();
     var nombre_usuario = $("#nombre_usuarioEdit").val();
     var apellido_usuario = $("#apellido_usuarioEdit").val();
     var telefono = $("#telefonoEdit").val();
     var direccion = $("#direccionEdit").val();
-  /*   var sucursal = $("#sucursalEdit").val();
-    var permiso = $("#permisoEdit").val(); */
+    var sucursal = $("#sucursalEdit").val();
+    var permiso = $("#permisoEdit").val();
 
     // get hidden field value
     var id = $("#hidden_user_id").val();
@@ -197,8 +204,8 @@ function UpdateUserDetails() {
             apellido_usuario: apellido_usuario,
             telefono: telefono,
             direccion: direccion,
-         /*    sucursal: sucursal,
-            permiso: permiso */
+            sucursal: sucursal,
+            permiso: permiso
     },
         function (data, status) {
             var datos = JSON.parse(data);
@@ -211,6 +218,8 @@ function UpdateUserDetails() {
                 );
                  // hide modal popup
                 $("#update_user_modal").modal("hide");
+                $("#passwordEdit").val("");
+                $("#passwordConfirmEdit").val("");
 
                 // reload Users by using readRecords();
                 readRecords();
@@ -230,6 +239,24 @@ function UpdateUserDetails() {
 $(document).ready(function () {
     // READ recods on page load
     readRecords(); // calling function
+
+
+    //Agregar sucusales y permisos al data toggle
+
+    var new_user=document.getElementById('new_user');
+    new_user.addEventListener("click", function () {
+        valores("consultaSUC", "sucursal", 1);
+        valores("consultaPERM", "permiso", 1);
+    })
+
+    $('#change_pass').hide();
+    $("#customSwitch1").on('change', function() {  
+        if($("#customSwitch1").is(':checked')) {  
+            $('#change_pass').show();
+        } else {  
+            $('#change_pass').hide();
+        }  
+    }); 
 });
 
 
@@ -272,15 +299,15 @@ $("#addForm").validate({
 			messages: {
 				
 				username: {
-					required: "Ingresa el username",
+					required: "Ingresa el nombre de usuario",
 					minlength: "El username debe contener al menos 5 letras"
                 },
                 nombre_usuario: {
-					required: "Ingresa el nombre del usuario",
+					required: "Ingresa el nombre",
 					minlength: "El nombre debe tener por lo menos 3 letras"
                 },
                 apellido_usuario: {
-					required: "Ingresa el apellido del usuario",
+					required: "Ingresa el apellido",
 					minlength: "El apellido debe tener por lo menos 3 letras"
                 },
                 telefono: {
@@ -312,7 +339,8 @@ $("#addForm").validate({
             $(element).addClass('is-invalid');
             },
             unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
             },
             submitHandler: function (form) {
                 addRecord();
@@ -345,11 +373,15 @@ $("#editForm").validate({
                       minlength: 5
                   },
                   passwordEdit: {
-                      required: true,
-                      minlength: 8
+                      minlength: 8,
+                      required: function (element){
+                          return $("#customSwitch1").is(':checked');
+                      }
                   },
                   passwordConfirmEdit: {
-                      required: true,
+                    required: function (element){
+                        return $("#customSwitch1").is(':checked');
+                    },
                       minlength: 8,
                       equalTo: "#passwordEdit"
                   }
@@ -357,15 +389,15 @@ $("#editForm").validate({
               messages: {
                   
                   usernameEdit: {
-                      required: "Ingresa el username",
+                      required: "Ingresa el nombre de usuario",
                       minlength: "El username debe contener al menos 5 letras"
                   },
                   nombre_usuarioEdit: {
-                      required: "Ingresa el nombre del usuario",
+                      required: "Ingresa el nombre",
                       minlength: "El nombre debe tener por lo menos 3 letras"
                   },
                   apellido_usuarioEdit: {
-                      required: "Ingresa el apellido del usuario",
+                      required: "Ingresa el apellido",
                       minlength: "El apellido debe tener por lo menos 3 letras"
                   },
                   telefonoEdit: {
@@ -397,7 +429,8 @@ $("#editForm").validate({
                 $(element).addClass('is-invalid');
               },
               unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
+                  $(element).removeClass('is-invalid');
+                  $(element).addClass('is-valid');
               },
               submitHandler: function (form) {
                 //form.submit();
@@ -405,4 +438,4 @@ $("#editForm").validate({
             }, 
 }  
 );
-  
+
