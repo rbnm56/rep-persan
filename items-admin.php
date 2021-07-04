@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row sm-2">
           <div class="col-sm-6">
-            <h1>Administración de Usuarios</h1>
+            <h1>Administración de Productos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Usuarios</li>
+              <li class="breadcrumb-item active">Productos</li>
             </ol>
           </div>
         </div>
@@ -34,12 +34,12 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-9">
-                    <h3 class="card-title">Lista de Usuarios</h3>
+                    <h3 class="card-title">Lista de Productos</h3>
                   </div>
                   <div class="col-sm-3">
-                      <button id="new_user" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
+                      <button id="new_item" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
                         <i class="fas fa-plus" ></i>
-                        <b>Añadir Usuario</b> 
+                        <b>Añadir Producto</b> 
                       </button> 
                   </div>
                 </div>
@@ -66,7 +66,7 @@
   <!-- Main Footer -->
   <?php
 
-    include_once('functions/php/usuarios/modalsUsers.php');
+    include_once('functions/php/productos/modals_Items.php');
   
     //  <!-- Control Sidebar -->
     include_once 'templates/sidebar-right.php';
@@ -77,7 +77,7 @@
     
   ?>
 
-
 <!-- Admin AJAX -->
-<script src="functions/js/admin-ajax.js"></script>
+<script src="functions/js/items-ajax.js"></script>
 <script src="functions/js/script.js"></script>
+

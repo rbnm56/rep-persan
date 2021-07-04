@@ -23,6 +23,4 @@
 <!-- Validate -->
 <script src="dist/js/jquery.validate.js"></script>
 <script src="dist/js/additional-methods.js"></script>
-<!-- Admin AJAX -->
-<script src="functions/js/admin-ajax.js"></script>
-<script src="functions/js/script.js"></script>
+

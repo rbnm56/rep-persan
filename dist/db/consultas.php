@@ -56,4 +56,56 @@
         }
         echo json_encode($response);
     }
+
+    if(isset($_POST) && $funcionPOST == "consultaUnidad"){
+
+        $queryUnidad = "SELECT unidad_id, nombre_unidad FROM unidades";
+
+        //Resultados de consulta PERMISOS
+        if (!$result= mysqli_query($connect, $queryUnidad)) {
+            exit(mysqli_error($connect));
+        }
+        if(mysqli_num_rows($result) > 0) {
+            $i = 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $response ['id'][$i] = $row['unidad_id'];
+                $response ['nombre'][$i] = $row['nombre_unidad'];
+            $i++;
+            }
+            $connect->close(); 
+        }
+
+        else
+        {
+            $response['status'] = 200;
+            $response['message'] = "Data not found!";
+        }
+        echo json_encode($response);
+    }
+
+    if(isset($_POST) && $funcionPOST == "consultaProveedor"){
+
+        $queryProv = "SELECT proveedor_id, nombre_proveedor FROM proveedores";
+
+        //Resultados de consulta PERMISOS
+        if (!$result= mysqli_query($connect, $queryProv)) {
+            exit(mysqli_error($connect));
+        }
+        if(mysqli_num_rows($result) > 0) {
+            $i = 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $response ['id'][$i] = $row['proveedor_id'];
+                $response ['nombre'][$i] = $row['nombre_proveedor'];
+            $i++;
+            }
+            $connect->close(); 
+        }
+
+        else
+        {
+            $response['status'] = 200;
+            $response['message'] = "Data not found!";
+        }
+        echo json_encode($response);
+    }
 ?>

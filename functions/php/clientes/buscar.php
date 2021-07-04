@@ -1,6 +1,6 @@
 <?php
 include("../../../dist/db/functions.php");
-include("../../../functions/php/usuarios/sesiones.php");
+include("../../../functions/php/sesiones.php");
 $array_response = array('exito' => FALSE, 'mensaje' => '');
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id = $_POST['id'];

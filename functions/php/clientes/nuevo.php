@@ -1,6 +1,6 @@
 <?php
 include("../../../dist/db/functions.php");
-include("../../../functions/php/usuarios/sesiones.php");
+include("../../../functions/php/sesiones.php");
 $array_response = array('exito' => FALSE, 'mensaje' => 'Error al insertar los datos');
 
 if (isset($_POST) && !empty($_POST['nombre']) && !empty($_POST['telefono']) && !empty($_POST['direccion'])) {

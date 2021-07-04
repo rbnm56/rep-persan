@@ -1,5 +1,5 @@
 <?php
-include_once 'functions/php/usuarios/sesiones.php';
+include_once 'functions/php/sesiones.php';
 include_once 'dist/db/functions.php';
 include_once 'templates/header.php';
 include_once 'templates/barra.php';

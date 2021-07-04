@@ -388,7 +388,7 @@ $("#editForm").validate({
                   
                   usernameEdit: {
                       required: "Ingresa el nombre de usuario",
-                      minlength: "El username debe contener al menos 5 letras"
+                      minlength: "El nombre de usuario debe contener al menos 5 letras"
                   },
                   nombre_usuarioEdit: {
                       required: "Ingresa el nombre",
