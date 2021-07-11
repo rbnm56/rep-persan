@@ -7,6 +7,19 @@
 
 ?>
 
+<style>
+  .test {
+    -webkit-box-shadow: 0 1px 5px 1px #CFCFCF;
+box-shadow: 0 1px 5px 1px #CFCFCF;
+
+}
+
+.box1{
+  filter: blur(1px);
+}
+
+</style>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -62,7 +75,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-<!-- MODALS users -->
+
   <!-- Main Footer -->
   <?php
 
@@ -76,6 +89,61 @@
     
     
   ?>
+
+<!-- Modal - Mostrar Materiales -->
+<!-- <form id="addForm" method="post" action=""> -->
+<div class="modal fade" id="show_materials" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lista de Materiales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+              <div class="row">
+                <div class="col-sm-9">
+                    <h3 class="card-title"></h3>
+                </div>
+                <div class="col-sm-3">
+                    <a id="edit_material_button" class="btn btn-block btn-info btn-xs">
+                      <i class="fas fa-edit" ></i> Editar
+                    </a> 
+                </div>
+              </div>
+          </div>
+        <div class="row" id="duallist_div">
+          <!-- /.card-header -->
+          <div class="modal-body">
+            <div class="row card">
+              <div class="col-12 test">
+                <div class="form-group">
+                  <select class="duallistbox" multiple="multiple" id="materials">
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="" class="btn btn-primary submit" value="Submit" >Agregar</button>
+          <!-- <input class="submit" type="submit" value="Submit" onclick="addRecord()"> -->
+        </div>
+        <!-- </form> -->
+    </div>
+  </div>
+</div>
+
+
 
 <!-- Admin AJAX -->
 <script src="functions/js/items-ajax.js"></script>

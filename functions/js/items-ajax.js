@@ -58,8 +58,10 @@ function readRecords() {
     $.get("functions/php/productos/CRUD_items.php", {
         funcion: 'readRecords'
     }, function (data, status) {
-        $("#records_content").html(data);
+            $("#records_content").html(data);
     });
+
+    
 }
 
 
@@ -175,8 +177,8 @@ function UpdateItemDetails() {
 
 $(document).ready(function () {
     // READ recods on page load
-    readRecords(); // calling function
 
+    readRecords(); // calling function
 
     //Agregar sucusales y permisos al data toggle
 
@@ -184,7 +186,7 @@ $(document).ready(function () {
     new_item.addEventListener("click", function () {
         valores("consultaUnidad", "item_unity", 1);
         valores("consultaProveedor", "item_provider", 1);
-    })
+    }) 
 });
 
 
@@ -290,3 +292,72 @@ $("#editFormItem").validate({
 }  
 );
 
+function GetMaterials(id) {
+    var id = id;
+    var result;
+    $("#show_materials").modal("show");
+    //Bootstrap Duallistbox
+
+    var dual_materials = $('.duallistbox').bootstrapDualListbox({
+        nonSelectedListLabel: 'Materiales',
+        selectedListLabel: 'Materiales del Producto',
+        moveOnSelect: false,
+        infoTextEmpty: "Lista vacía",
+        moveSelectedLabel: "Mover seleccionado",
+        moveAllLabel: "Mover todos",
+        removeSelectedLabel: "Remover seleccionado",
+        removeAllLabel: "Remover todos"
+
+    });
+    
+    var cons = "queryDouble_materials";
+    $.post("dist/db/consultas.php", {
+        funcion: cons,
+        id: id,
+    },
+        function (data) {
+            // PARSE json data
+            result = JSON.parse(data);
+            console.log(result);
+            var i = 0;
+            var j = 0;
+            $(".bootstrap-duallistbox-container").find("*").prop("disabled", true);
+
+
+            //Muestra todos los materiales en inventario
+            if (dual_materials.empty() != true) {
+                $(".box1").css('filter', 'blur(1px)');
+                $.each(result.id_mat, function () {
+                    $option = $('<option value = mat'+ result.id_mat[i] + ' >' + result.nombre_mat[i] + '</option>');
+
+                    dual_materials.append($option);
+                    //Tooltip con descripcion material
+                    $('#mat'+result.id_mat[i]).tooltip();
+                    i++;
+                });
+                
+
+                //Seleciona los materiales de ese producto
+                if (result.message_item != "Data not found!") {
+                    $.each(result.id_pr_mt, function () {
+                        $("#materials option[value=mat" + result.id_mat[j] + "]").attr("selected", "selected").css("font-weight", "bold");
+                        j++;
+                    });
+                }
+            }
+
+            dual_materials.bootstrapDualListbox('refresh', true); 
+            
+        }
+    );
+    
+    var edit_material_button = document.getElementById('edit_material_button');
+    
+    edit_material_button.addEventListener("click", function () {
+        $(".box1").css('filter', 'blur(0px)');
+        $(".bootstrap-duallistbox-container").find("*").prop("disabled", false);
+    })
+    
+    
+
+}

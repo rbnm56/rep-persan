@@ -1,4 +1,34 @@
 
+<style type="text/css">
+
+/* i.fa-hand-pointer {
+  position: relative;
+} */
+
+td {
+    padding: 20px;
+}
+.note {
+    position: relative;
+}
+.note:after { /* Magic Happens Here!!! */
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0; 
+    height: 0; 
+    display: block;
+    border-left: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+
+    border-top: 30px solid #007bff;
+} /* </magic> */
+
+</style>
+
+
+
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 try{
@@ -15,6 +45,7 @@ try{
                 <th>Descripción</th>
                 <th>Unidad</th>
                 <th>Proveedor</th>
+                <th>Materiales</th>
                 <th>Acciones</th>
             </tr>
         </thead> 
@@ -32,13 +63,37 @@ try{
     	$number = 1;
     	while($row = mysqli_fetch_assoc($result))
     	{
+        $item = $row['producto_id'];
+
+        $query_mat = "SELECT nombre_material FROM productos_materiales INNER JOIN productos ON productos_materiales.id_producto = productos.producto_id INNER JOIN materiales ON productos_materiales.id_material = materiales.material_id WHERE id_producto = '$item' limit 2";
+
+        if (!$result_mat = mysqli_query($connect, $query_mat)) {
+          exit(mysqli_error($connect));
+        }
+
     		$data .= '<tr>
 				<td>'.$number.'</td>
                 <td>'.$row['nombre_producto'].'</td>
                 <td>$ '.$row['precio_producto'].'</td>
                 <td>'.$row['descripcion_producto'].'</td>
                 <td>'.$row['nombre_unidad'].'</td>
-				        <td>'.$row['nombre_proveedor'].'</td>
+                <td>'.$row['nombre_proveedor'].'</td>
+        
+                <td id="cell_'.$row['producto_id'].'" ondblclick="GetMaterials('.$row['producto_id'].')"">';
+
+                if(mysqli_num_rows($result_mat) > 0){
+                  //Add icon into the cell with values
+                  $data .= '<script> $("#cell_'.$row['producto_id'].'").addClass("note"); </script>';
+                  //print the meterials with limit of 2
+                  while($row_mat = mysqli_fetch_assoc($result_mat)){
+                    $data .= $row_mat['nombre_material']."\n";
+                  }
+                }
+                else{
+                  $data .= 'N/A';
+                }
+                
+        $data .= '</td>
                 <td>
                 <div class=row>
                     <!-- EDIT BUTTON-->
@@ -73,6 +128,7 @@ try{
                     <th>Descripción</th>
                     <th>Unidad</th>
                     <th>Proveedor</th>
+                    <th>Materiales</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>
