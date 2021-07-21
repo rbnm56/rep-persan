@@ -100,7 +100,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        <button type="submit" class="btn btn-primary submit" value="Submit" >Guardar Cambios</button>
-        <input type="hidden" id="hidden_item_id">
+        <input type="hidden" id="hidden_producto_id">
         </form>
       </div>
     </div>

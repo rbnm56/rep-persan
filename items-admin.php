@@ -15,7 +15,7 @@ box-shadow: 0 1px 5px 1px #CFCFCF;
 }
 
 .box1{
-  filter: blur(1px);
+  filter: blur(2px);
 }
 
 </style>
@@ -91,7 +91,7 @@ box-shadow: 0 1px 5px 1px #CFCFCF;
   ?>
 
 <!-- Modal - Mostrar Materiales -->
-<!-- <form id="addForm" method="post" action=""> -->
+<form id="addForm_materials" method="post" action="">
 <div class="modal fade" id="show_materials" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -134,11 +134,11 @@ box-shadow: 0 1px 5px 1px #CFCFCF;
         </div>
       </div>     
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="" class="btn btn-primary submit" value="Submit" >Agregar</button>
-          <!-- <input class="submit" type="submit" value="Submit" onclick="addRecord()"> -->
+          <button type="button" id = "cancelar_mat_button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" id = "agregar_mat_button" class="btn btn-primary submit" value="Submit">Guardar</button>
+          <input type="hidden" id="hidden_item_id">
         </div>
-        <!-- </form> -->
+</form>
     </div>
   </div>
 </div>

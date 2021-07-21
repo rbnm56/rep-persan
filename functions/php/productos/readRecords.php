@@ -86,7 +86,7 @@ try{
                   $data .= '<script> $("#cell_'.$row['producto_id'].'").addClass("note"); </script>';
                   //print the meterials with limit of 2
                   while($row_mat = mysqli_fetch_assoc($result_mat)){
-                    $data .= $row_mat['nombre_material']."\n";
+                    $data .= $row_mat['nombre_material']."<br>";
                   }
                 }
                 else{
@@ -164,6 +164,8 @@ try{
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "destroy":true,
+      "retrieve": true,
 
       language: {
         "decimal": "",

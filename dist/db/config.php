@@ -5,8 +5,7 @@ try{
 
 }catch(Exception $e){
     echo 'ERROR:'.$e->getMessage();
-    }
-
+}
 /* //Host name of the MySQL server.
 $host = 'localhost';
 

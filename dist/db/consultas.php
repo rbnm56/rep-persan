@@ -166,8 +166,9 @@
     if(isset($_POST) && $funcionPOST == "queryDouble_materials"){
 
         $response = [];
+        $response ['id'] = $id;
 
-        $queryMat_item = "SELECT id_material, nombre_material FROM productos_materiales INNER JOIN productos ON productos_materiales.id_producto = productos.producto_id INNER JOIN materiales ON productos_materiales.id_material = materiales.material_id WHERE id_producto = '$id' ";
+        $queryMat_item = "SELECT producto_materiales_id, id_material, nombre_material FROM productos_materiales INNER JOIN productos ON productos_materiales.id_producto = productos.producto_id INNER JOIN materiales ON productos_materiales.id_material = materiales.material_id WHERE id_producto = '$id' ";
 
         $queryMat = "SELECT material_id, nombre_material, descripcion_material FROM materiales";
 
@@ -190,7 +191,8 @@
             $response['status_material'] = 200;
             $response['message_material'] = "Data not found!";
         }
-
+        
+    
         //Resultados de consulta materiales_item
         if (!$result= mysqli_query($connect, $queryMat_item)) {
             exit(mysqli_error($connect));
@@ -199,16 +201,19 @@
             $i = 0;
             while ($row = mysqli_fetch_assoc($result)) {
                 $response ['id_pr_mt'][$i] = $row['id_material'];
+                $response ['producto_materiales_id'][$i] = $row['producto_materiales_id'];
                 $response ['nombre_pr_mt'][$i] = $row['nombre_material'];
             $i++;
             }
-            $connect->close(); 
         }
     
         else{
             $response['status_item'] = 200;
             $response['message_item'] = "Data not found!";
         }
+    
     echo json_encode($response);
+    mysqli_close($connect);
+    
     }
 ?>
