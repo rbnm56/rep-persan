@@ -11,18 +11,41 @@ if(isset($_POST) && $funcionPOST == "addRecordItem"){
     $item_description = $_POST['item_description'];
     $item_unity = ((int)$_POST['item_unity']) + 1;
     $item_provider = ((int)$_POST['item_provider']) + 1;
-    
+    $materiales = (array) $_POST['materials_array'];
+
+    $total_mat = count($materiales);
+
     try{
+
         // include Database connection file
         include_once("../../../dist/db/functions.php");
         $query = "INSERT INTO productos (nombre_producto, descripcion_producto, precio_producto, id_unidad, id_proveedor) VALUES('$item_name', '$item_description', '$item_price', '$item_unity', '$item_provider')";
         
         if ($connect->query($query) == TRUE) {
-            $response = [
+
+            $id_ultimo=mysqli_insert_id($connect);
+            if ($total_mat > 0){
+                for ($i = 0; $i <$total_mat; $i++){
+
+                    $queryMat = "INSERT INTO productos_materiales (id_producto, id_material) VALUES ('$id_ultimo', '$materiales[$i]')";
+
+        
+                    if ($connect->query($queryMat) === TRUE) {
+                        $response['materiales'][$i] = [
+                            'respuesta' => 'exito'
+                        ];
+                    } else {
+                        $response['materiales'][$i] = array(
+                            'respuesta' => 'error'
+                        );
+                    }
+                };
+            };
+            $response ['producto'] = [
                 'respuesta' => 'exito'
             ];
           } else {
-            $response = [
+            $response ['producto']  = [
                 'respuesta' => 'error'
             ];
           }
@@ -50,19 +73,44 @@ elseif($funcionPOST == "DeleteItem" && isset($_POST['id']) && isset($_POST['id']
     // get item id
     $item_id = $_POST['id'];
     // delete item
+    $cont = 0;
+
     try{
         include_once("../../../dist/db/functions.php");
-        $query = "DELETE FROM productos WHERE producto_id = '$item_id'";
 
-        if ($connect->query($query) === TRUE) {
-            $response = [
-                'respuesta' => 'exito'
-            ];
-          } else {
-            $response = array(
-                'respuesta' => 'error'
-            );
-          }
+        //Realiza la consulta para los materiales del producto elegido
+        $queryCons = "SELECT COUNT(*) total FROM productos_materiales WHERE id_producto = '$item_id'";
+        $result = mysqli_query($connect, $queryCons);
+        $cont = mysqli_fetch_assoc($result);
+        //Almacena el total de materiales encontrados
+        $response ['contador'] = $cont['total'];
+
+        if($cont['total'] > 0){
+            //Elimina los materiales del producto
+            $queryProd_Mat = "DELETE FROM productos_materiales WHERE id_producto = '$item_id'";
+            if ($connect->query($queryProd_Mat) === TRUE) {
+                $response ['respuestaProdMat'] = 'exito';
+            } else {
+                $response ['respuestaProdMat'] = 'error';
+            }
+            //Elimina el producto
+            $query = "DELETE FROM productos WHERE producto_id = '$item_id'";
+            if ($connect->query($query) === TRUE) {
+                $response ['respuestaProd'] = 'exito';
+            } else {
+                $response ['respuestaProd'] = 'error';
+            }
+        //Si el producto no tiene materiales
+        }else if($cont['total'] == 0){
+            //Elimina el producto
+            $query = "DELETE FROM productos WHERE producto_id = '$item_id'";
+            if ($connect->query($query) === TRUE) {
+                $response ['respuestaProd'] = 'exito';
+            } else {
+                $response ['respuestaProd'] = 'error';
+            }
+        }
+         
         echo json_encode($response);
         $connect->close();
     }catch(Exception $e){
@@ -192,6 +240,8 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
                 break;
                 $connect->close();
 
+                //Caso cuando se eliminaron todos lo materiales del producto
+
                 case($materials[0] == ""):
                     $i = 0;
                     for ($i = 0; $i <$total_ids; $i++){
@@ -204,7 +254,7 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
                             ];
                         } else {
                             $response[$i] = [
-                                'respuesta' => 'errordel'
+                                'respuesta' => 'error'
                             ];
                         }
                     };
@@ -231,7 +281,7 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
                 break;
                 $connect->close();
                 //Caso cuando los elementos de la tabla son menores a los materiales elegidos
-                case ($total_ids < $total_mat):
+                case (($total_ids < $total_mat) && ($materials[0] != "")):
                     $i = 0;
                     // Actualiza el elemento en la tabla productos_materiales
                     for ($i = $i; $i <$total_ids; $i++){
@@ -269,7 +319,7 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
                 break;
                 $connect->close();
                 //Caso cuando los elementos de la tabla son mayores a los materiales elegidos
-                case ($total_ids > $total_mat):
+                case (($total_ids > $total_mat) && ($materials[0] != "")):
                     $i = 0;
                     // Actualiza el elemento en la tabla productos_materiales
                     for ($i = $i; $i < $total_mat; $i++){
@@ -298,7 +348,7 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
                             ];
                         } else {
                             $response[$i] = [
-                                'respuesta' => 'errordel'
+                                'respuesta' => 'error'
                             ];
                         }
                     };
@@ -313,5 +363,58 @@ elseif($funcionPOST == "UpdateMaterials_Items"){
             } 
         }
     }
+
+    if(isset($_POST) && $funcionPOST == "addRecordUnity"){
+        // get values 
+        $unity_name_add = $_POST['unity_name_add'];
+        $unity_description_add = $_POST['unity_description_add'];
+    
+        try{
+    
+            // include Database connection file
+            include_once("../../../dist/db/functions.php");
+            $query = "INSERT INTO unidades (nombre_unidad, descripcion_unidad) VALUES('$unity_name_add', '$unity_description_add')";
+            
+            if ($connect->query($query) == TRUE) {
+    
+                $response ['respuesta'] = "exito";
+              } else {
+                $response ['respuesta'] = "error";
+              }
+            echo json_encode($response);
+    
+            $connect->close();
+       }catch (Exception $e){
+           // echo "Error: " . $e->getMessage();
+        }
+        
+    }
+
+    if(isset($_POST) && $funcionPOST == "addRecordProvider"){
+        // get values 
+        $provider_name_add = $_POST['provider_name_add'];
+        $provider_dir_add = $_POST['provider_dir_add'];
+        $provider_description_add = $_POST['provider_description_add'];
+    
+        try{
+    
+            // include Database connection file
+            include_once("../../../dist/db/functions.php");
+            $query = "INSERT INTO proveedores (nombre_proveedor, direccion_proveedor, descripcion_proveedor) VALUES('$provider_name_add','$provider_dir_add', '$provider_description_add')";
+            
+            if ($connect->query($query) == TRUE) {
+                $response ['respuesta'] = "exito";
+              } else {
+                $response ['respuesta'] = "error";
+              }
+            echo json_encode($response);
+    
+            $connect->close();
+       }catch (Exception $e){
+           // echo "Error: " . $e->getMessage();
+        }
+        
+    }
+
 
 ?> 

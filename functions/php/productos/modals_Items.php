@@ -29,18 +29,54 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
-            <label for="item_unity" class="col-form-label">Unidad</label>
-            <select class="form-control" name="item_unity" id="item_unity">
+          <div class="col-sm-6 form-group">
+            <div class="row">
+              <div class="col-sm-9">
+                <label for="item_unity" class="col-form-label">Unidad</label>
+              </div>
+              <div class="col-sm-3 float-sm-right">
+                <a id="edit_unidad_button" class="nav-link" data-toggle="modal" data-target="#unity_item_modal">
+                  <i class="fas fa-plus" ></i>
+                </a>
+              </div>
+            </div>
+            <select class="form-control" name="item_unity" id="item_unity" >
               <option value="ninguno">Seleccione</option>
             </select>
           </div>
-          <div class="col-sm-6">
-            <label for="item_provider" class="col-form-label">Proveedor</label>
-            <select class="form-control" name="item_provider" id="item_provider">
+          <div class="col-sm-6 form-group">
+            <div class="row">
+              <div class="col-sm-9">
+                <label for="item_provider" class="col-form-label">Proveedor</label>
+              </div>
+              <div class="col-sm-3 float-sm-right">
+                <a id="edit_provider_button" class="nav-link" data-toggle="modal" data-target="#provider_item_modal">
+                  <i class="fas fa-plus" ></i>
+                </a>
+              </div>
+            </div>
+              <select class="form-control" name="item_provider" id="item_provider">
               <option value="ninguno">Seleccione</option>
             </select>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="Switch_materials">
+                <label class="custom-control-label" for="Switch_materials">Añadir materiales</label>
+              </div>
+           </div>
+        </div>
+        <div class="row card" id="add_materials">
+          <div class="col-12 test">
+            <div class="form-group">
+              <select class="duallistbox_New" multiple="multiple" id="materials_add">
+              </select>
+            </div>
+                <!-- /.form-group -->
+          </div>
+              <!-- /.col -->
         </div>
       </div>
         <div class="modal-footer">
@@ -56,7 +92,7 @@
 <!-- Modal - Update User details -->
 
 <form id="editFormItem" method="get" action="">
-<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="update_item_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
    
@@ -90,17 +126,35 @@
               <option value="ninguno">Seleccione</option>
             </select>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 form-group">
             <label for="item_provider_edit" class="col-form-label">Proveedor</label>
             <select class="form-control" name="item_provider_edit" id="item_provider_edit">
               <option value="ninguno">Seleccione</option>
             </select>
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="Switch_materials_edit">
+                <label class="custom-control-label" for="Switch_materials_edit">Editar materiales</label>
+              </div>
+           </div>
+        </div>
+        <div class="row card" id="edit_materials">
+          <div class="col-12 test">
+            <div class="form-group">
+              <select class="duallistbox_edit" multiple="multiple" id="materials_edit">
+              </select>
+            </div>
+                <!-- /.form-group -->
+          </div>
+              <!-- /.col -->
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        <button type="submit" class="btn btn-primary submit" value="Submit" >Guardar Cambios</button>
-        <input type="hidden" id="hidden_producto_id">
+        <input type="hidden" id="hidden_producto_id_edit">
         </form>
       </div>
     </div>
@@ -108,3 +162,78 @@
 </div>
 <!-- // Modal --> 
 
+
+<form id="unity_form" method="get" action="">
+<div class="modal fade" id="unity_item_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+   
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir Unidad</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="unity_name_add" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" name="unity_name_add" id="unity_name_add" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="unity_description_add" class="col-form-label">Descripción:</label>
+            <textarea class="form-control" rows="2" name="unity_description_add" id="unity_description_add"> </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+        <button type="submit" class="btn btn-primary submit" value="Submit" >Agregar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form id="provider_form" method="get" action="">
+<div class="modal fade" id="provider_item_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+   
+      <div class="modal-header">
+        <h5 class="modal-title">Añadir Proveedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="provider_name_add" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" name="provider_name_add" id="provider_name_add" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="provider_dir_add" class="col-form-label">Dirección:</label>
+            <input type="text" class="form-control" name="provider_dir_add" id="provider_dir_add" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="provider_description_add" class="col-form-label">Descripción:</label>
+            <textarea class="form-control" rows="2" name="provider_description_add" id="provider_description_add"> </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+        <button type="submit" class="btn btn-primary submit" value="Submit" >Agregar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

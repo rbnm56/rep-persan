@@ -14,10 +14,6 @@ box-shadow: 0 1px 5px 1px #CFCFCF;
 
 }
 
-.box1{
-  filter: blur(2px);
-}
-
 </style>
 
   <!-- Content Wrapper. Contains page content -->

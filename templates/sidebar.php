@@ -116,7 +116,7 @@
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Materia Prima</p>
+                 <p>Materiales</p>
                </a>
              </li>
              <li class="nav-item">

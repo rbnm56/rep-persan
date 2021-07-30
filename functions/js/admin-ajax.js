@@ -255,6 +255,7 @@ $(document).ready(function () {
             $('#change_pass').hide();
         }  
     }); 
+    
 });
 
 
