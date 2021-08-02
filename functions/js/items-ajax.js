@@ -971,9 +971,3 @@ $("#addFormItem").validate({
             }, 
 }  
   );
-
-function eliminaClass_Valid(){
-    $("#provider_name_add").removeClass('is-valid');
-    $("#provider_dir_add").removeClass('is-valid');
-    $("#provider_description_add").removeClass('is-valid');
-  }

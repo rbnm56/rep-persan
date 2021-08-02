@@ -47,7 +47,7 @@
              <li class="nav-item">
                <a href="users-admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p> Administración</p>
+                 <p>Administración</p>
                </a>
              </li>
            </ul>
@@ -77,29 +77,6 @@
          </li>
          <li class="nav-item">
            <a href="#" class="nav-link">
-             <i class="nav-icon far fa-file-alt"></i>
-             <p>
-               Reportes
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-tools nav-icon"></i>
-                 <p> Administración</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
-               </a>
-             </li>
-           </ul>
-         </li>
-         <li class="nav-item">
-           <a href="#" class="nav-link">
              <i class="nav-icon fas fa-clipboard-list"></i>
              <p>
                Productos
@@ -107,6 +84,12 @@
              </p>
            </a>
            <ul class="nav nav-treeview">
+            <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Inventario</p>
+               </a>
+             </li>
              <li class="nav-item">
                <a href="items-admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
@@ -114,15 +97,15 @@
                </a>
              </li>
              <li class="nav-item">
-               <a href="#" class="nav-link">
+               <a href="materials-admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Materiales</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="#" class="nav-link">
+               <a href="prov_uni_admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Inventario</p>
+                 <p>Proveedores / Unidades</p>
                </a>
              </li>
            </ul>
@@ -145,7 +128,7 @@
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Repotes</p>
+                 <p>Reportes</p>
                </a>
              </li>
            </ul>

@@ -97,12 +97,12 @@ try{
                 <td>
                 <div class=row>
                     <!-- EDIT BUTTON-->
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <button onclick="GetItemDetails('.$row['producto_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
                     </div>
                                     
                     <!-- DELETE BUTTON -->
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <button onclick="DeleteItem('.$row['producto_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
                         </button>
                     </div>

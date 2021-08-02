@@ -10,19 +10,15 @@ try{
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Teléfono</th>
                 <th>Dirección</th>
-                <th>Sucursal</th>
-                <th>Permisos</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id";
+    $query = "SELECT * FROM proveedores";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -35,28 +31,24 @@ try{
     	while($row = mysqli_fetch_assoc($result))
     	{
     		$data .= '<tr>
-				<td>'.$number.'</td>
-                <td>'.$row['username'].'</td>
-                <td>'.$row['nombre_usuario'].'</td>
-                <td>'.$row['apellido_usuario'].'</td>
-                <td>'.$row['telefono'].'</td>
-				<td>'.$row['direccion'].'</td>
-                <td>'.$row['nombre_sucursal'].'</td>
-                <td>'.$row['nombre_permiso'].'</td>
+				        <td>'.$number.'</td>
+                <td>'.$row['nombre_proveedor'].'</td>
+                <td>'.$row['direccion_proveedor'].'</td>
+                <td>'.$row['descripcion_proveedor'].'</td>
                 <td>
-                <div class=row>
-                    <!-- EDIT BUTTON-->
-                    <div class="col-sm-6">
-                        <button onclick="GetUserDetails('.$row['usuario_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
-                    </div>
-                                    
-                    <!-- DELETE BUTTON -->
-                    <div class="col-sm-6">
-                        <button onclick="DeleteUser('.$row['usuario_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </div>
-				</td>
+                  <div class=row>
+                      <!-- EDIT BUTTON-->
+                      <div class="col-sm-6">
+                          <button onclick="GetProveedorDetails('.$row['proveedor_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
+                      </div>
+                                      
+                      <!-- DELETE BUTTON -->
+                      <div class="col-sm-6">
+                          <button onclick="DeleteProveedor('.$row['proveedor_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
+                          </button>
+                      </div>
+                  </div>
+				        </td>
     		</tr>';
     		$number++;
       }
@@ -72,13 +64,9 @@ try{
                 <tfoot>
                   <tr>
                     <th>No.</th>
-                    <th>Usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
                     <th>Dirección</th>
-                    <th>Sucursal</th>
-                    <th>Permisos</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>
@@ -98,13 +86,11 @@ try{
     $("#example1").DataTable({
       
       //dom: '<"row" <"col-sm-6"B> <"col-sm-6"<"selectTable"f>>> rtip',
-        buttons: [
+
+      buttons: [
             'copy',
             'print',
-            'excel',
-            'pdf',
-            'colvis'
-            
+            'excel',         
         ],
 
       "paging": true,
@@ -138,13 +124,11 @@ try{
           copy: "<abbr title='Copiar'><i class='fa fa-copy'></i></abbr>",
           copyTitle: 'Copiado',
           copySuccess: {
-            _: '%d Usuarios copiados a portapapeles',
-            1: '1 Usuario copiado'
+            _: '%d Proveedores copiados a portapapeles',
+            1: '1 Proveedor copiado'
           },
           print: "<abbr title='Imprimir'><i class='fa fa-print'></i></abbr>",
           excel: "<i class='fa fa-file-excel'></i>",
-          pdf: "<i class='fa fa-file-pdf'></i>",
-          colvis: "<i class='fa fa-columns'></i>"
           
     },
         

@@ -6,23 +6,18 @@ try{
     include("../../../dist/db/functions.php");
 
 	// Design initial table header 
-    $data = '<table id="example1" class="table table-bordered table-striped">
+    $data = '<table id="unity_table" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Sucursal</th>
-                <th>Permisos</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id";
+    $query = "SELECT * FROM unidades";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -35,28 +30,23 @@ try{
     	while($row = mysqli_fetch_assoc($result))
     	{
     		$data .= '<tr>
-				<td>'.$number.'</td>
-                <td>'.$row['username'].'</td>
-                <td>'.$row['nombre_usuario'].'</td>
-                <td>'.$row['apellido_usuario'].'</td>
-                <td>'.$row['telefono'].'</td>
-				<td>'.$row['direccion'].'</td>
-                <td>'.$row['nombre_sucursal'].'</td>
-                <td>'.$row['nombre_permiso'].'</td>
+				        <td>'.$number.'</td>
+                <td>'.$row['nombre_unidad'].'</td>
+                <td>'.$row['descripcion_unidad'].'</td>
                 <td>
-                <div class=row>
-                    <!-- EDIT BUTTON-->
-                    <div class="col-sm-6">
-                        <button onclick="GetUserDetails('.$row['usuario_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
-                    </div>
-                                    
-                    <!-- DELETE BUTTON -->
-                    <div class="col-sm-6">
-                        <button onclick="DeleteUser('.$row['usuario_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </div>
-				</td>
+                  <div class=row>
+                      <!-- EDIT BUTTON-->
+                      <div class="col-sm-6">
+                          <button onclick="GetUnidadDetails('.$row['unidad_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
+                      </div>
+                                      
+                      <!-- DELETE BUTTON -->
+                      <div class="col-sm-6">
+                          <button onclick="DeleteUnidad('.$row['unidad_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
+                          </button>
+                      </div>
+                  </div>
+				        </td>
     		</tr>';
     		$number++;
       }
@@ -72,13 +62,8 @@ try{
                 <tfoot>
                   <tr>
                     <th>No.</th>
-                    <th>Usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Sucursal</th>
-                    <th>Permisos</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>
@@ -95,15 +80,13 @@ try{
 <script>
   $(function () {
   
-    $("#example1").DataTable({
+    $("#unity_table").DataTable({
       
       //dom: '<"row" <"col-sm-6"B> <"col-sm-6"<"selectTable"f>>> rtip',
         buttons: [
             'copy',
             'print',
             'excel',
-            'pdf',
-            'colvis'
             
         ],
 
@@ -138,20 +121,18 @@ try{
           copy: "<abbr title='Copiar'><i class='fa fa-copy'></i></abbr>",
           copyTitle: 'Copiado',
           copySuccess: {
-            _: '%d Usuarios copiados a portapapeles',
-            1: '1 Usuario copiado'
+            _: '%d Unidades copiadas a portapapeles',
+            1: '1 Unidad copiada'
           },
           print: "<abbr title='Imprimir'><i class='fa fa-print'></i></abbr>",
           excel: "<i class='fa fa-file-excel'></i>",
-          pdf: "<i class='fa fa-file-pdf'></i>",
-          colvis: "<i class='fa fa-columns'></i>"
           
     },
         
   }
   ,
 
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#unity_table_wrapper .col-md-6:eq(0)');
   });
 
 

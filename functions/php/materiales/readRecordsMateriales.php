@@ -10,19 +10,15 @@ try{
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Sucursal</th>
-                <th>Permisos</th>
+                <th>Descripción</th>
+                <th>Proveedor</th>
                 <th>Acciones</th>
             </tr>
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM usuarios INNER JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id INNER JOIN permisos ON usuarios.id_permiso = permisos.permiso_id";
+    $query = "SELECT * FROM materiales INNER JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -35,28 +31,24 @@ try{
     	while($row = mysqli_fetch_assoc($result))
     	{
     		$data .= '<tr>
-				<td>'.$number.'</td>
-                <td>'.$row['username'].'</td>
-                <td>'.$row['nombre_usuario'].'</td>
-                <td>'.$row['apellido_usuario'].'</td>
-                <td>'.$row['telefono'].'</td>
-				<td>'.$row['direccion'].'</td>
-                <td>'.$row['nombre_sucursal'].'</td>
-                <td>'.$row['nombre_permiso'].'</td>
+				        <td>'.$number.'</td>
+                <td>'.$row['nombre_material'].'</td>
+                <td>'.$row['descripcion_material'].'</td>
+                <td>'.$row['nombre_proveedor'].'</td>
                 <td>
-                <div class=row>
-                    <!-- EDIT BUTTON-->
-                    <div class="col-sm-6">
-                        <button onclick="GetUserDetails('.$row['usuario_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
-                    </div>
-                                    
-                    <!-- DELETE BUTTON -->
-                    <div class="col-sm-6">
-                        <button onclick="DeleteUser('.$row['usuario_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </div>
-				</td>
+                  <div class=row>
+                      <!-- EDIT BUTTON-->
+                      <div class="col-md-6">
+                          <button onclick="GetMaterialDetails('.$row['material_id'].')" class="btn btn-outline-info btn-block"><i class="fas fa-edit"></i></button>
+                      </div>
+                                      
+                      <!-- DELETE BUTTON -->
+                      <div class="col-md-6">
+                          <button onclick="DeleteMaterial('.$row['material_id'].')" class="btn btn-outline-danger btn-block"><i class="fas fa-trash-alt"></i>
+                          </button>
+                      </div>
+                  </div>
+				        </td>
     		</tr>';
     		$number++;
       }
@@ -72,13 +64,9 @@ try{
                 <tfoot>
                   <tr>
                     <th>No.</th>
-                    <th>Usuario</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Sucursal</th>
-                    <th>Permisos</th>
+                    <th>Descripción</th>
+                    <th>Proveedor</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>
