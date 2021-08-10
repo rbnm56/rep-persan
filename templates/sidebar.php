@@ -70,13 +70,7 @@
              <li class="nav-item">
                <a href="clientes.php" class="nav-link">
                <i class="far fas fa-list-ol nav-icon"></i>
-                 <p> Todos</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="#" class="nav-link" >
-                 <i class="far fas fa-plus-circle nav-icon"></i>
-                 <p>Nuevo</p>
+                 <p> Mostrar</p>
                </a>
              </li>
            </ul>
@@ -123,9 +117,9 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="#" class="nav-link">
+               <a href="modelos.php" class="nav-link">
                  <i class="far fa-tools nav-icon"></i>
-                 <p> Administración</p>
+                 <p> Modelos</p>
                </a>
              </li>
              <li class="nav-item">

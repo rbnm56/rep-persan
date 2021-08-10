@@ -13,7 +13,7 @@ include_once 'templates/sidebar.php';
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Administración de Ventas</h1>
-                    <button type="button" class="btn btn-primary" id="btnAbrirAgregar">
+                    <button type="button" class="btn btn-primary" id="btnAbrirAgregarVenta">
                         Nuevo
                     </button>
                 </div><!-- /.col -->
@@ -77,7 +77,7 @@ include_once 'templates/sidebar.php';
         </div>
         <!-- /.card -->
 
-        <div class="modal fade" id="modalAgregar">
+        <div class="modal fade" id="modalAgregarVenta">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -160,7 +160,7 @@ include_once 'templates/sidebar.php';
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="form-group">
-                                            <div><label for="total_material"> &sbquo; </label></div>
+                                            <div><label for="total_material"> &nbsp; </label></div>
                                             <div class="form-group">
                                                 <button class="btn btn-success" name="btnAgregarMaterial" id="btnAgregarMaterial">Agregar</button>
                                             </div>
@@ -226,7 +226,7 @@ include_once 'templates/sidebar-right.php';
 //  <!-- Footer-->
 include_once 'templates/footer.php'
 ?>
-<script src="funciones/ventas.js"></script>
+<script src="functions/js/ventas.js"></script>
 </body>
 
 </html>

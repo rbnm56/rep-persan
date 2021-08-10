@@ -1,10 +1,12 @@
 <?php
-    $connect = new mysqli('localhost', 'root', '', 'persanv1');
+mysqli_report(MYSQLI_REPORT_STRICT);
+try{
+    //$connect = new mysqli('localhost', 'root', '', 'persanv1');
+    $connect = new mysqli('localhost', 'root', 'root', 'persanv1');
 
-    if($connect->connect_error){
-        echo $error -> $connect->connect_error;
-    }
-
+}catch(Exception $e){
+    echo 'ERROR:'.$e->getMessage();
+}
 /* //Host name of the MySQL server.
 $host = 'localhost';
 
