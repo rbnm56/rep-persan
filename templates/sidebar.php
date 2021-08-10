@@ -16,7 +16,7 @@
          <img src="dist/img/images-white.png" class="img-circle elevation-2" alt="User Image">
        </div>
        <div class="info">
-         <a href="#" class="d-block">
+         <a href="profile.php" class="d-block">
          <?php
               echo $_SESSION['nombre'];
             ?>

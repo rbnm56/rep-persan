@@ -68,7 +68,7 @@
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            <a href="#" class="btn btn-default btn-flat"><i class="fas fa-cog"></i> Perfil</a>
+            <a href="profile.php" class="btn btn-default btn-flat"><i class="fas fa-cog"></i> Perfil</a>
             <a href="login.php?cerrar_sesion=true" class="btn btn-default btn-flat float-right"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
           </li>
         </ul>
