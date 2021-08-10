@@ -31,6 +31,7 @@ td {
 
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
+include_once '../sesiones.php';
 try{
     // include Database connection file 
     include("../../../dist/db/functions.php");
@@ -45,8 +46,12 @@ try{
                 <th>Descripción</th>
                 <th>Unidad</th>
                 <th>Proveedor</th>
-                <th>Materiales</th>
-                <th>Acciones</th>
+                <th>Materiales</th>';
+                if($_SESSION['id_permiso'] == 1){
+                  $data .= '
+                    <th>Acciones</th>'; 
+                };
+                  $data .= '
             </tr>
         </thead> 
         <tbody>';
@@ -109,7 +114,9 @@ try{
                   $data .= 'N/A';
                 }
                 
-        $data .= '</td>
+        $data .= '</td>';
+        if($_SESSION['id_permiso'] == 1){
+          $data .= '
                 <td>
                 <div class=row>
                     <!-- EDIT BUTTON-->
@@ -123,7 +130,9 @@ try{
                         </button>
                     </div>
                 </div>
-				</td>
+				</td>';
+      };
+      $data .= '
     		</tr>';
     		$number++;
       }
@@ -144,8 +153,12 @@ try{
                     <th>Descripción</th>
                     <th>Unidad</th>
                     <th>Proveedor</th>
-                    <th>Materiales</th>
-                    <th>Acciones</th>
+                    <th>Materiales</th>';
+                    if($_SESSION['id_permiso'] == 1){
+                      $data .= '
+                        <th>Acciones</th>'; 
+                    };
+                      $data .= '
                   </tr>
                 </tfoot>
         </table>';

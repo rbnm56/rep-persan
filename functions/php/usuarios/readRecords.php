@@ -1,6 +1,8 @@
 
 <?php
+
 error_reporting(E_ALL ^ E_NOTICE);
+include_once '../sesiones.php';
 try{
     // include Database connection file 
     include("../../../dist/db/functions.php");
@@ -16,8 +18,12 @@ try{
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>Sucursal</th>
-                <th>Permisos</th>
-                <th>Acciones</th>
+                <th>Permisos</th>';
+                if($_SESSION['id_permiso'] == 1){
+                  $data .= '
+                    <th>Acciones</th>'; 
+                };
+                  $data .= '
             </tr>
         </thead> 
         <tbody>';
@@ -42,7 +48,9 @@ try{
                 <td>'.$row['telefono'].'</td>
 				<td>'.$row['direccion'].'</td>
                 <td>'.$row['nombre_sucursal'].'</td>
-                <td>'.$row['nombre_permiso'].'</td>
+                <td>'.$row['nombre_permiso'].'</td>';
+                if($_SESSION['id_permiso'] == 1){
+                  $data .= '
                 <td>
                 <div class=row>
                     <!-- EDIT BUTTON-->
@@ -56,7 +64,9 @@ try{
                         </button>
                     </div>
                 </div>
-				</td>
+                </td>';
+      };
+      $data .= '
     		</tr>';
     		$number++;
       }
@@ -78,9 +88,13 @@ try{
                     <th>Teléfono</th>
                     <th>Dirección</th>
                     <th>Sucursal</th>
-                    <th>Permisos</th>
-                    <th>Acciones</th>
-                  </tr>
+                    <th>Permisos</th>';
+                    if($_SESSION['id_permiso'] == 1){
+                      $data .= '
+                        <th>Acciones</th>'; 
+                    };
+                      $data .= '
+                </tr>
                 </tfoot>
         </table>';
 

@@ -134,8 +134,8 @@ elseif($funcionPOST == "UpdateUserDetails"){
         $apellido_usuario = $_POST['apellido_usuario'];
         $telefono = $_POST['telefono'];
         $direccion = $_POST['direccion'];
-        $sucursal = ((int)$_POST['sucursal']) +1;
-        $permiso = ((int)$_POST['permiso']) +1;
+        $sucursal = ((int)$_POST['sucursal']);
+        $permiso = ((int)$_POST['permiso']);
     
         $opciones = array(
             'cost' => 12
@@ -172,9 +172,9 @@ elseif(isset($_POST['login-admin'])){
     $password_local = $_POST['password'];
     try{
         include_once '../../../dist/db/functions.php';
-        $stmt = $connect->prepare("SELECT usuario_id, username, password, nombre_usuario, apellido_usuario FROM usuarios WHERE username = '$username'");
+        $stmt = $connect->prepare("SELECT usuario_id, username, password, nombre_usuario, apellido_usuario, id_permiso FROM usuarios WHERE username = '$username'");
         $stmt->execute();
-        $stmt->bind_result($usuario_id, $username, $password, $nombre_usuario, $apellido_usuario);
+        $stmt->bind_result($usuario_id, $username, $password, $nombre_usuario, $apellido_usuario, $id_permiso);
         if($stmt->affected_rows){
             $existe = $stmt->fetch();
             if($existe){ 
@@ -183,11 +183,13 @@ elseif(isset($_POST['login-admin'])){
                     $_SESSION['username'] = $username;
                     $_SESSION['nombre'] = $nombre_usuario;
                     $_SESSION['id'] = $usuario_id;
+                    $_SESSION['id_permiso'] = $id_permiso;
                     $respuestaLogin = [
                         "respuesta" => "exitoso",
                         "usuario" => $username,
                         "nombre" => $nombre_usuario,
-                        "apellido" => $apellido_usuario
+                        "apellido" => $apellido_usuario,
+                        "id_permiso" => $id_permiso
                         
                     ];
                 } else{
