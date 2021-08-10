@@ -9,7 +9,7 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
 
     $material_name = $_POST['material_name'];
     $des_material_add = $_POST['des_material_add'];
-    $proveedor_add = ((int)$_POST['proveedor_add']) + 1;
+    $proveedor_add = ((int)$_POST['proveedor_add']);
 
     try{
         // include Database connection file
@@ -76,7 +76,7 @@ else if($funcionPOST == "GetMaterialDetails"){
         // Get User Details
         include_once("../../../dist/db/functions.php");
         try{
-            $query = "SELECT * FROM materiales INNER JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id WHERE material_id = '$material_id' ";
+            $query = "SELECT * FROM materiales LEFT JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id WHERE material_id = '$material_id' ";
 
             $response = array();
 
@@ -120,12 +120,12 @@ elseif($funcionPOST == "UpdateMaterialDetails"){
         $id = $_POST['id'];
         $material_name_edit = $_POST['material_name_edit'];
         $des_material_edit = $_POST['des_material_edit'];
-        $proveedor_edit = ((int)$_POST['proveedor_edit']) +1;
+        $proveedor_edit = ((int)$_POST['proveedor_edit']);
 
         // Update User details
         try{
             include_once("../../../dist/db/functions.php");
-            $query = "UPDATE materiales SET nombre_material='$material_name_edit', descripcion_material='$des_material_edit', id_proveedor='$proveedor_edit' WHERE material_id = '$id'";
+            $query = "UPDATE materiales SET nombre_material='$material_name_edit', descripcion_material='$des_material_edit', id_proveedor=$proveedor_edit WHERE material_id = '$id'";
 
             if ($connect->query($query) === TRUE) {
                 $response = [

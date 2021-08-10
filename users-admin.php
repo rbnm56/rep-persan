@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row sm-2">
           <div class="col-sm-6">
-            <h1>Administración de Usuarios</h1>
+            <h1>Administración de Empleados</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Usuarios</li>
+              <li class="breadcrumb-item active">Empleados</li>
             </ol>
           </div>
         </div>
@@ -34,12 +34,12 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-9">
-                    <h3 class="card-title">Lista de Usuarios</h3>
+                    <h3 class="card-title">Lista de Empleados</h3>
                   </div>
                   <div class="col-sm-3">
                       <button id="new_user" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
                         <i class="fas fa-plus" ></i>
-                        <b>Añadir Usuario</b> 
+                        <b>Añadir Empleado</b> 
                       </button> 
                   </div>
                 </div>

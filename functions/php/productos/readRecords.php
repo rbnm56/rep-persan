@@ -51,7 +51,7 @@ try{
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM productos INNER JOIN unidades ON productos.id_unidad = unidades.unidad_id INNER JOIN proveedores ON productos.id_proveedor = proveedores.proveedor_id";
+    $query = "SELECT * FROM productos LEFT JOIN unidades ON productos.id_unidad = unidades.unidad_id LEFT JOIN proveedores ON productos.id_proveedor = proveedores.proveedor_id";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -76,8 +76,24 @@ try{
                 <td>'.$row['nombre_producto'].'</td>
                 <td>$ '.$row['precio_producto'].'</td>
                 <td>'.$row['descripcion_producto'].'</td>
-                <td>'.$row['nombre_unidad'].'</td>
-                <td>'.$row['nombre_proveedor'].'</td>
+                <td>';
+                if ($row['nombre_unidad'] != NULL){
+                  $data .= $row['nombre_unidad'];
+                }else{
+                  $data .= 'N/A';
+                }
+                
+                $data .= '</td>
+
+                <td>';
+                
+                if ($row['nombre_proveedor'] != NULL){
+                  $data .= $row['nombre_proveedor'];
+                }else{
+                  $data .= 'N/A';
+                }
+                
+                $data .= '</td>
         
                 <td id="cell_'.$row['producto_id'].'" ondblclick="GetMaterials('.$row['producto_id'].')"">';
 

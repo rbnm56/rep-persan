@@ -18,7 +18,7 @@ try{
         </thead> 
         <tbody>';
 
-    $query = "SELECT * FROM materiales INNER JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id";
+    $query = "SELECT * FROM materiales LEFT JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id";
 
 	if (!$result = mysqli_query($connect, $query)) {
         exit(mysqli_error($connect));
@@ -34,7 +34,15 @@ try{
 				        <td>'.$number.'</td>
                 <td>'.$row['nombre_material'].'</td>
                 <td>'.$row['descripcion_material'].'</td>
-                <td>'.$row['nombre_proveedor'].'</td>
+                <td>';
+                if ($row['nombre_proveedor'] != NULL){
+                  $data .= $row['nombre_proveedor'];
+                }else{
+                  $data .= 'N/A';
+                }
+                
+                $data .= 
+                '</td>
                 <td>
                   <div class=row>
                       <!-- EDIT BUTTON-->

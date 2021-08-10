@@ -160,22 +160,30 @@ function GetUserDetails(id) {
             // PARSE json data
             var user = JSON.parse(data);
             // Assing existing values to the modal popup fields
-            
-            $("#usernameEdit").val(user.consulta.username);
-            //$("#passwordEdit").val(user.consulta.password);
-            $("#nombre_usuarioEdit").val(user.consulta.nombre_usuario);
-            $("#apellido_usuarioEdit").val(user.consulta.apellido_usuario);
-            $("#telefonoEdit").val(user.consulta.telefono);
-            $("#direccionEdit").val(user.consulta.direccion);
-            sucursalID = user.consulta.sucursal_id;
-            permisoID = user.consulta.permiso_id;
-            valores("consultaSUC", "sucursalEdit", sucursalID);
-            valores("consultaPERM", "permisoEdit", permisoID);
-            
+            if (user.status != 200) {
+                $("#usernameEdit").val(user.consulta.username);
+                //$("#passwordEdit").val(user.consulta.password);
+                $("#nombre_usuarioEdit").val(user.consulta.nombre_usuario);
+                $("#apellido_usuarioEdit").val(user.consulta.apellido_usuario);
+                $("#telefonoEdit").val(user.consulta.telefono);
+                $("#direccionEdit").val(user.consulta.direccion);
+                sucursalID = user.consulta.sucursal_id;
+                permisoID = user.consulta.permiso_id;
+                valores("consultaSUC", "sucursalEdit", sucursalID);
+                valores("consultaPERM", "permisoEdit", permisoID);
+                // Open modal popup
+                $("#update_user_modal").modal("show");
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Se produjo un error',
+                    footer: 'Intenta nuevamente'
+                  })
+            }
         }
     );
-    // Open modal popup
-    $("#update_user_modal").modal("show");
+    
 }
 
 function UpdateUserDetails() {
@@ -299,25 +307,25 @@ $("#addForm").validate({
 				
 				username: {
 					required: "Ingresa el nombre de usuario",
-					minlength: "El username debe contener al menos 5 letras"
+					minlength: "El nombre de usuario es muy corto"
                 },
                 nombre_usuario: {
 					required: "Ingresa el nombre",
-					minlength: "El nombre debe tener por lo menos 3 letras"
+					minlength: "El nombre es muy corto"
                 },
                 apellido_usuario: {
 					required: "Ingresa el apellido",
-					minlength: "El apellido debe tener por lo menos 3 letras"
+					minlength: "El apellido es muy corto"
                 },
                 telefono: {
 					required: "Ingresa el telefono",
-                    minlength: "El teléfono debe ser por lo menos de 8 dígitos",
+                    minlength: "El teléfono es incorrecto",
                     maxlength: "Dígitos permitidos excedidos",
                     number: "Ingresa un número válido"
                 },
                 direccion: {
 					required: "Ingresa la dirección",
-					minlength: "La dirección es demasiado corta"
+					minlength: "La dirección es muy corta"
 				},
 				password: {
 					required: "Ingresa una contraseña",
@@ -389,25 +397,25 @@ $("#editForm").validate({
                   
                   usernameEdit: {
                       required: "Ingresa el nombre de usuario",
-                      minlength: "El nombre de usuario debe contener al menos 5 letras"
+                      minlength: "El nombre de usuario es muy corto"
                   },
                   nombre_usuarioEdit: {
                       required: "Ingresa el nombre",
-                      minlength: "El nombre debe tener por lo menos 3 letras"
+                      minlength: "El nombre es muy corto"
                   },
                   apellido_usuarioEdit: {
                       required: "Ingresa el apellido",
-                      minlength: "El apellido debe tener por lo menos 3 letras"
+                      minlength: "El apellido es muy corto"
                   },
                   telefonoEdit: {
                       required: "Ingresa el telefono",
-                      minlength: "El teléfono debe ser por lo menos de 8 dígitos",
+                      minlength: "El teléfono es incorrecto",
                       maxlength: "Dígitos permitidos excedidos",
                       number: "Ingresa un número válido"
                   },
                   direccionEdit: {
                       required: "Ingresa la dirección",
-                      minlength: "La dirección es demasiado corta"
+                      minlength: "La dirección es muy corta"
                   },
                   passwordEdit: {
                       required: "Ingresa una contraseña",

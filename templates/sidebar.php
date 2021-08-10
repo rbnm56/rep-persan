@@ -47,30 +47,15 @@
              <li class="nav-item">
                <a href="users-admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Administración</p>
+                 <p>Empleados</p>
                </a>
              </li>
            </ul>
-         </li>
-         <li class="nav-item">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-user-circle"></i>
-             <p>
-               Clientes
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="clientes.php" class="nav-link">
-               <i class="far fas fa-list-ol nav-icon"></i>
-                 <p> Todos</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="#" class="nav-link" >
-                 <i class="far fas fa-plus-circle nav-icon"></i>
-                 <p>Nuevo</p>
+               <a href="users-admin.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Clientes</p>
                </a>
              </li>
            </ul>
@@ -84,16 +69,10 @@
              </p>
            </a>
            <ul class="nav nav-treeview">
-            <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p>Inventario</p>
-               </a>
-             </li>
              <li class="nav-item">
                <a href="items-admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p> Administración</p>
+                 <p> Productos</p>
                </a>
              </li>
              <li class="nav-item">
@@ -105,7 +84,7 @@
              <li class="nav-item">
                <a href="prov_uni_admin.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Proveedores / Unidades</p>
+                 <p>Otros</p>
                </a>
              </li>
            </ul>
@@ -122,13 +101,13 @@
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p> Administración</p>
+                 <p>Inventario</p>
                </a>
              </li>
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Reportes</p>
+                 <p>Ventas</p>
                </a>
              </li>
            </ul>
@@ -145,13 +124,13 @@
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p> Administración</p>
+                 <p>Vender</p>
                </a>
              </li>
              <li class="nav-item">
                <a href="#" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Reportes</p>
+                 <p>Salidas</p>
                </a>
              </li>
            </ul>

@@ -143,20 +143,30 @@ function GetItemDetails(id) {
             // PARSE json data
             var item = JSON.parse(data);
             // Assing existing values to the modal popup fields
-            
-            $("#item_name_edit").val(item.consulta.nombre_producto);
-            $("#item_price_edit").val(item.consulta.precio_producto);
-            $("#item_description_edit").val(item.consulta.descripcion_producto);
+            if (item.status != 200) {
+                $("#item_name_edit").val(item.consulta.nombre_producto);
+                $("#item_price_edit").val(item.consulta.precio_producto);
+                $("#item_description_edit").val(item.consulta.descripcion_producto);
 
-            unidadID = item.consulta.id_unidad;
-            proveedorID = item.consulta.id_proveedor;
-            valores("consultaUnidad", "item_unity_edit", unidadID);
-            valores("consultaProveedor", "item_provider_edit", proveedorID);
+                unidadID = item.consulta.id_unidad;
+                proveedorID = item.consulta.id_proveedor;
+                valores("consultaUnidad", "item_unity_edit", unidadID);
+                valores("consultaProveedor", "item_provider_edit", proveedorID);
+
+                // Open modal popup
+                $("#update_item_modal").modal("show");
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Se produjo un error',
+                    footer: 'Intenta nuevamente'
+                  })
+            }
             
         }
     );
-    // Open modal popup
-    $("#update_item_modal").modal("show");
+    
 }
 
 function UpdateItemDetails() {
@@ -201,6 +211,7 @@ function UpdateItemDetails() {
     },
         function (data, status) {
             var datos = JSON.parse(data);
+            console.log(datos);
             if (datos.respuesta == "exito") {
                 Swal.fire(
                     'Correcto',

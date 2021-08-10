@@ -79,7 +79,6 @@ function DeleteMaterial(id) {
                 id: id
             },
                 function (data, status) {
-                    console.log(data);
                     var datos = JSON.parse(data);
                     if (datos.respuesta == "exito") {
                         // reload Users by using readRecords();
@@ -107,25 +106,37 @@ function GetMaterialDetails(id) {
         function (data, status) {
             // PARSE json data
             var datos = JSON.parse(data);
+            if (datos.status != 200) {
+                $("#material_name_edit").val(datos.consulta.nombre_material);
+                $("#des_material_edit").val(datos.consulta.descripcion_material);
+                var proveedorID = datos.consulta.id_proveedor;
+                if (proveedorID == "null") {
+                    proveedorID = 1;
+                }
+                valores("consultaProveedor", "proveedor_edit", proveedorID);
+                // Open modal popup
+                $("#update_material_modal").modal("show");
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Se produjo un error',
+                    footer: 'Intenta nuevamente'
+                  })
+            }
             // Assing existing values to the modal popup fields
-            $("#material_name_edit").val(datos.consulta.nombre_material);
-            $("#des_material_edit").val(datos.consulta.descripcion_material);
-            var proveedorID = datos.consulta.id_proveedor;
-
-            valores("consultaProveedor", "proveedor_edit", proveedorID);
+            
             
         }
     );
-    // Open modal popup
-    $("#update_material_modal").modal("show");
 }
 
-function UpdateUserDetails() {
+function UpdateMaterialDetails() {
     // get values
     var material_name_edit = $("#material_name_edit").val();
     var des_material_edit = $("#des_material_edit").val();
     var proveedor_edit = $("#proveedor_edit").val();
-    
 
     // get hidden field value
     var id = $("#hidden_material_id").val();
@@ -163,7 +174,7 @@ function UpdateUserDetails() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'El material ya existe',
+                    text: 'Se produjo un error',
                     footer: 'Intenta nuevamente'
                   })
             }
@@ -186,7 +197,6 @@ function Add_Provider(){
 
     }, function (data, status) {
         // close the popup
-            //console.log(data);
             var datos = JSON.parse(data);
             var Toast = Swal.mixin({
                 toast: true,
@@ -285,76 +295,27 @@ $("#addForm_Materials").validate({
 
 $("#edit_MaterialForm").validate({
     rules: {
-                  usernameEdit: {
-                      required: true,
-                      minlength: 5
-                  },
-                  nombre_usuarioEdit: {
-                      required: true,
-                      minlength:3
-                  },
-                  apellido_usuarioEdit: {
-                      required: true,
-                      minlength: 3
-                  },
-                  telefonoEdit: {
-                      required: true,
-                      minlength: 8,
-                      maxlength: 10,
-                      number: true
-                  },
-                  direccionEdit: {
-                      required: true,
-                      minlength: 5
-                  },
-                  passwordEdit: {
-                      minlength: 8,
-                      required: function (element){
-                          return $("#customSwitch1").is(':checked');
-                      }
-                  },
-                  passwordConfirmEdit: {
-                    required: function (element){
-                        return $("#customSwitch1").is(':checked');
-                    },
-                      minlength: 8,
-                      equalTo: "#passwordEdit"
-                  }
-              },
-              messages: {
-                  
-                  usernameEdit: {
-                      required: "Ingresa el nombre de usuario",
-                      minlength: "El nombre de usuario debe contener al menos 5 letras"
-                  },
-                  nombre_usuarioEdit: {
-                      required: "Ingresa el nombre",
-                      minlength: "El nombre debe tener por lo menos 3 letras"
-                  },
-                  apellido_usuarioEdit: {
-                      required: "Ingresa el apellido",
-                      minlength: "El apellido debe tener por lo menos 3 letras"
-                  },
-                  telefonoEdit: {
-                      required: "Ingresa el telefono",
-                      minlength: "El teléfono debe ser por lo menos de 8 dígitos",
-                      maxlength: "Dígitos permitidos excedidos",
-                      number: "Ingresa un número válido"
-                  },
-                  direccionEdit: {
-                      required: "Ingresa la dirección",
-                      minlength: "La dirección es demasiado corta"
-                  },
-                  passwordEdit: {
-                      required: "Ingresa una contraseña",
-                      minlength: "La contraseña debe tener 8 letras y/o caracteres"
-                  },
-                  passwordConfirmEdit: {
-                      required: "Repite la contraseña",
-                      minlength: "La contraseña debe tener 8 letras y/o caracteres",
-                      equalTo: "Las contraseñas no coinciden"
-                  },
-              },
+        material_name_edit: {
+            required: true,
+            minlength: 3
+            },
+            des_material_edit: {
+            required: true,
+            minlength: 5
+            },
+        },
+        messages: {
+            
+            material_name_edit: {
+            required: "Ingresa el nombre",
+            minlength: "El nombre es muy corto"
+            },
+            des_material_edit: {
+            required: "Ingresa la descripción",
+            minlength: "La descripción es muy corta"
+            },
+            
+        },
               errorElement: 'span',
               errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
@@ -369,58 +330,7 @@ $("#edit_MaterialForm").validate({
               },
               submitHandler: function (form) {
                 //form.submit();
-                UpdateUserDetails();
+                UpdateMaterialDetails();
             }, 
 }  
 );
-
-$("#provider_form").validate({
-    rules: {
-                    provider_name_add: {
-                    required: true,
-                    minlength: 2
-                    },
-                    provider_dir_add: {
-                    required: true,
-                    minlength: 5
-                    },
-                    provider_description_add: {
-                    required: true,
-                    minlength: 5
-                  },
-              },
-              messages: {
-                  
-                    provider_name_add: {
-                    required: "Ingresa el nombre del proveedor",
-                    minlength: "El nombre del proveedor es muy corto"
-                    },
-                    provider_dir_add: {
-                    required: "Ingresa la dirección",
-                    minlength: "La dirección es muy corta"
-                    },
-                    provider_description_add: {
-                    required: "Ingresa la descripción",
-                    minlength: "La descripción es muy corta"
-                },
-                  
-              },
-              errorElement: 'span',
-              errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-              },
-              highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-              },
-              unhighlight: function (element, errorClass, validClass) {
-                  $(element).removeClass('is-invalid');
-                  $(element).addClass('is-valid');
-              },
-              submitHandler: function (form) {
-                  //$(element).removeClass('is-valid');
-                  Add_Provider();
-                  
-            }, 
-}  
-  );

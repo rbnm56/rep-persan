@@ -24,22 +24,24 @@
             <input type="text" class="form-control" name="des_material_add" id="des_material_add">
           </div>
         </div>
-        <div class="col-sm-6 form-group">
-            <div class="row">
-              <div class="col-sm-9">
-                <label for="proveedor_add" class="col-form-label">Proveedor</label>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+              <div class="row">
+                <div class="col-sm-9">
+                  <label for="proveedor_add" class="col-form-label">Proveedor</label>
+                </div>
+                <div class="col-sm-3 float-sm-right">
+                  <a id="add_provider_button" class="nav-link" data-toggle="modal" data-target="#provider_add_modal">
+                    <i class="fas fa-plus" ></i>
+                  </a>
+                </div>
               </div>
-              <div class="col-sm-3 float-sm-right">
-                <a id="add_provider_button" class="nav-link" data-toggle="modal" data-target="#provider_add_modal">
-                  <i class="fas fa-plus" ></i>
-                </a>
-              </div>
+                <select class="form-control" name="proveedor_add" id="proveedor_add">
+                <option value="ninguno">Seleccione</option>
+              </select>
             </div>
-              <select class="form-control" name="proveedor_add" id="proveedor_add">
-              <option value="ninguno">Seleccione</option>
-            </select>
           </div>
-      </div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
           <button type="" class="btn btn-primary submit" value="Submit" >Agregar</button>
@@ -77,7 +79,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-6 form-group">
             <label for="proveedor_edit" class="col-form-label">Proveedor</label>
             <select class="form-control" name="proveedor_edit" id="proveedor_edit">
               <option value="ninguno">Seleccione</option>

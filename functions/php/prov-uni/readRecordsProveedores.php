@@ -86,13 +86,39 @@ try{
     $("#example1").DataTable({
       
       //dom: '<"row" <"col-sm-6"B> <"col-sm-6"<"selectTable"f>>> rtip',
+/* 
+      columnDefs: [{
+        width: "10px",
+        targets: 0
+      },
+      {
+        width: "10%",
+        targets: 1
+      },
+      {
+        width: "10%",
+        targets: 2
+      },
+      {
+        width: "10%",
+        targets: 3
+      },
+      {
+        width: "10%",
+        targets: 4
+      },
+      {
+        width: "10%",
+        targets: 5
+      },
+    ], */
 
       buttons: [
             'copy',
             'print',
             'excel',         
         ],
-
+      
       "paging": true,
       "lengthChange": false,
       "searching": true,
@@ -100,6 +126,7 @@ try{
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      
 
       language: {
         "decimal": "",

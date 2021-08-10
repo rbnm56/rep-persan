@@ -3,19 +3,19 @@
 /* ********* CRUD */
 
 // Add Record
-function addRecord() {
+function addRecordProveedor() {
      // get values
     
-    var material_name = $("#material_name").val();
-    var des_material_add = $("#des_material_add").val();
-    var proveedor_add = $("#proveedor_add").val();
+    var proveedor_name = $("#proveedor_name").val();
+    var dir_proveedor_add = $("#dir_proveedor_add").val();
+    var des_proveedor_add = $("#des_proveedor_add").val();
 
     // Add record
-    $.post("functions/php/materiales/CRUD_Materiales.php", {
+    $.post("functions/php/prov-uni/CRUD_Proveedores.php", {
         funcion: "addRecord", 
-        material_name: material_name,
-        des_material_add: des_material_add,
-        proveedor_add: proveedor_add,
+        proveedor_name: proveedor_name,
+        dir_proveedor_add: dir_proveedor_add,
+        des_proveedor_add: des_proveedor_add,
 
     }, function (data, status) {
         // close the popup
@@ -23,33 +23,80 @@ function addRecord() {
             if (datos.respuesta == "exito") {
                 Swal.fire(
                     'Correcto',
-                    'Material añadido correctamente',
+                    'Proveedor añadido correctamente',
                     'success'
                 );
                 // Hide Modal
-                $("#new_material_modal").modal("hide");
+                $("#new_proveedor_modal").modal("hide");
                 // read records again 
-                readRecords();
+                readRecordsProveedores();
 
                 // clear fields from the popup
-                $("#material_name").val("");
-                $("#des_material_add").val("");
+                $("#proveedor_name").val("");
+                $("#dir_proveedor_add").val("");
+                $("#des_proveedor_add").val("");
                 // clear class is-valid
-                $("#material_name").removeClass('is-valid');
-                $("#des_material_add").removeClass('is-valid');
-                $("#proveedor_add").removeClass('is-valid');
+                $("#proveedor_name").removeClass('is-valid');
+                $("#dir_proveedor_add").removeClass('is-valid');
+                $("#des_proveedor_add").removeClass('is-valid');
 
             }else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'El material no pudo ser añadido',
+                    text: 'El proveedor no pudo ser añadido',
                     footer: 'Intenta nuevamente'
                   })
             }
             
 
     }); 
+}
+
+function addRecordUnidad() {
+    // get values
+   
+   var unidad_name_add = $("#unidad_name_add").val();
+   var des_unidad_add = $("#des_unidad_add").val();
+
+   // Add record
+   $.post("functions/php/prov-uni/CRUD_Unidades.php", {
+       funcion: "addRecord", 
+       unidad_name_add: unidad_name_add,
+       des_unidad_add: des_unidad_add,
+
+   }, function (data, status) {
+       // close the popup
+           var datos = JSON.parse(data);
+           if (datos.respuesta == "exito") {
+               Swal.fire(
+                   'Correcto',
+                   'Unidad añadida correctamente',
+                   'success'
+               );
+               // Hide Modal
+               $("#new_unity_modal").modal("hide");
+               // read records again 
+               readRecordsUnidades();
+
+               // clear fields from the popup
+               $("#unidad_name_add").val("");
+               $("#des_unidad_add").val("");
+               // clear class is-valid
+               $("#unidad_name_add").removeClass('is-valid');
+               $("#des_unidad_add").removeClass('is-valid');
+
+           }else {
+               Swal.fire({
+                   icon: 'error',
+                   title: 'Error',
+                   text: 'La unidad no pudo ser añadida',
+                   footer: 'Intenta nuevamente'
+                 })
+           }
+           
+
+   }); 
 }
 
 // READ records
@@ -72,9 +119,9 @@ function readRecordsUnidades() {
 }
 
 
-function DeleteMaterial(id) {
+function DeleteProveedor(id) {
     Swal.fire({
-        title: '¿Confirmas la eliminación del material?',
+        title: '¿Confirmas la eliminación del proveedor?',
         text: "La acción no podrá ser revertida",
         icon: 'warning',
         showCloseButton: true,
@@ -83,17 +130,50 @@ function DeleteMaterial(id) {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            $.post("functions/php/materiales/CRUD_Materiales.php", {
-                funcion: "DeleteMaterial",
+            $.post("functions/php/prov-uni/CRUD_Proveedores.php", {
+                funcion: "Delete",
                 id: id
             },
                 function (data, status) {
-                    console.log(data);
+                   
                     var datos = JSON.parse(data);
                     if (datos.respuesta == "exito") {
                         // reload Users by using readRecords();
-                        Swal.fire('Correcto!', 'Material eliminado', 'success')
-                        readRecords();
+                        Swal.fire('Correcto!', 'Proveedor eliminado', 'success')
+                        readRecordsProveedores();
+                    }
+                    else {
+                        Swal.fire('No se pudo eliminar', '', 'error')
+                    }
+            }
+        );
+          
+        } 
+      })
+}
+
+function DeleteUnidad(id) {
+    Swal.fire({
+        title: '¿Confirmas la eliminación de la unidad?',
+        text: "La acción no podrá ser revertida",
+        icon: 'warning',
+        showCloseButton: true,
+        confirmButtonColor: '#008f39',
+        confirmButtonText: 'Continuar',
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            $.post("functions/php/prov-uni/CRUD_Unidades.php", {
+                funcion: "Delete",
+                id: id
+            },
+                function (data, status) {
+                   
+                    var datos = JSON.parse(data);
+                    if (datos.respuesta == "exito") {
+                        // reload Users by using readRecords();
+                        Swal.fire('Correcto!', 'Unidad eliminada', 'success')
+                        readRecordsUnidades();
                     }
                     else {
                         Swal.fire('No se pudo eliminar', '', 'error')
@@ -106,46 +186,65 @@ function DeleteMaterial(id) {
 }
 
 
-function GetMaterialDetails(id) {
+
+function GetProveedorDetails(id) {
     // Add User ID to the hidden field for furture usage
-    $("#hidden_material_id").val(id);
-    $.post("functions/php/materiales/CRUD_Materiales.php", {
-            funcion: "GetMaterialDetails", 
+    $("#hidden_provider_id").val(id);
+    $.post("functions/php/prov-uni/CRUD_Proveedores.php", {
+            funcion: "GetDetails", 
             id: id
         },
         function (data, status) {
             // PARSE json data
             var datos = JSON.parse(data);
             // Assing existing values to the modal popup fields
-            $("#material_name_edit").val(datos.consulta.nombre_material);
-            $("#des_material_edit").val(datos.consulta.descripcion_material);
-            var proveedorID = datos.consulta.id_proveedor;
-
-            valores("consultaProveedor", "proveedor_edit", proveedorID);
+            $("#proveedor_name_edit").val(datos.consulta.nombre_proveedor);
+            $("#dir_proveedor_edit").val(datos.consulta.direccion_proveedor);
+            $("#des_proveedor_edit").val(datos.consulta.descripcion_proveedor);
             
         }
     );
     // Open modal popup
-    $("#update_material_modal").modal("show");
+    $("#update_provider_modal").modal("show");
 }
 
-function UpdateUserDetails() {
+function GetUnidadDetails(id) {
+    // Add User ID to the hidden field for furture usage
+    $("#hidden_unidad_id").val(id);
+    $.post("functions/php/prov-uni/CRUD_Unidades.php", {
+            funcion: "GetDetails", 
+            id: id
+        },
+        function (data, status) {
+            // PARSE json data
+            var datos = JSON.parse(data);
+            // Assing existing values to the modal popup fields
+            $("#unidad_name_edit").val(datos.consulta.nombre_unidad);
+            $("#des_unidad_edit").val(datos.consulta.descripcion_unidad);
+            
+        }
+    );
+    // Open modal popup
+    $("#update_unidad_modal").modal("show");
+}
+
+function UpdateProveedorDetails() {
     // get values
-    var material_name_edit = $("#material_name_edit").val();
-    var des_material_edit = $("#des_material_edit").val();
-    var proveedor_edit = $("#proveedor_edit").val();
+    var proveedor_name_edit = $("#proveedor_name_edit").val();
+    var dir_proveedor_edit = $("#dir_proveedor_edit").val();
+    var des_proveedor_edit = $("#des_proveedor_edit").val();
     
 
     // get hidden field value
-    var id = $("#hidden_material_id").val();
+    var id = $("#hidden_provider_id").val();
 
     // Update the details by requesting to the server using ajax
-    $.post("functions/php/materiales/CRUD_Materiales.php", {
-            funcion: "UpdateMaterialDetails",
+    $.post("functions/php/prov-uni/CRUD_Proveedores.php", {
+            funcion: "UpdateDetails",
             id: id,
-            material_name_edit: material_name_edit,
-            des_material_edit: des_material_edit,
-            proveedor_edit : proveedor_edit
+            proveedor_name_edit: proveedor_name_edit,
+            dir_proveedor_edit: dir_proveedor_edit,
+            des_proveedor_edit : des_proveedor_edit
 
     },
         function (data, status) {
@@ -157,22 +256,23 @@ function UpdateUserDetails() {
                     'success'
                 );
                  // hide modal popup
-                $("#update_material_modal").modal("hide");
-                $("#material_name_edit").val("");
-                $("#des_material_edit").val("");
+                $("#update_provider_modal").modal("hide");
+                $("#proveedor_name_edit").val("");
+                $("#dir_proveedor_edit").val("");
+                $("#des_proveedor_edit").val("");
                 
                 //Clear is valid class
-                $("#material_name_edit").removeClass('is-valid');
-                $("#des_material_edit").removeClass('is-valid');
-                $("#proveedor_edit").removeClass('is-valid');
+                $("#proveedor_name_edit").removeClass('is-valid');
+                $("#dir_proveedor_edit").removeClass('is-valid');
+                $("#des_proveedor_edit").removeClass('is-valid');
 
                 // reload Users by using readRecords();
-                readRecords();
+                readRecordsProveedores();
             }else if(datos.respuesta == "error"){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'El material ya existe',
+                    text: 'El proveedor ya existe',
                     footer: 'Intenta nuevamente'
                   })
             }
@@ -181,57 +281,54 @@ function UpdateUserDetails() {
     )
 }
 
-function Add_Provider(){
-    var provider_name_add = $("#provider_name_add").val();
-    var provider_dir_add = $("#provider_dir_add").val();
-    var provider_description_add = $("#provider_description_add").val();
+function UpdateUnidadDetails() {
+    // get values
+    var unidad_name_edit = $("#unidad_name_edit").val();
+    var des_unidad_edit = $("#des_unidad_edit").val();
+    
 
-    // Add record
-    $.post("functions/php/materiales/CRUD_Materiales.php", {
-        funcion: "addRecordProvider", 
-        provider_name_add: provider_name_add,
-        provider_dir_add : provider_dir_add,
-        provider_description_add: provider_description_add,
+    // get hidden field value
+    var id = $("#hidden_unidad_id").val();
 
-    }, function (data, status) {
-        // close the popup
-            //console.log(data);
+    // Update the details by requesting to the server using ajax
+    $.post("functions/php/prov-uni/CRUD_Unidades.php", {
+            funcion: "UpdateDetails",
+            id: id,
+            unidad_name_edit: unidad_name_edit,
+            des_unidad_edit : des_unidad_edit
+
+    },
+        function (data, status) {
             var datos = JSON.parse(data);
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 5000
-              });
             if (datos.respuesta == "exito") {
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Agregado correctamente'
-                  })
-                // Hide Modal
-                valores("consultaProveedor", "proveedor_add", 1);
-                $("#provider_add_modal").modal("hide");
-                // read records again 
+                Swal.fire(
+                    'Correcto',
+                    'Se han modificado los datos',
+                    'success'
+                );
+                 // hide modal popup
+                $("#update_unidad_modal").modal("hide");
 
-                // clear fields from the popup
-                $("#provider_name_add").val("");
-                $("#provider_dir_add").val("");
-                $("#provider_description_add").val("");
-                // clear class valid
-                $("#provider_name_add").removeClass('is-valid');
-                $("#provider_dir_add").removeClass('is-valid');
-                $("#provider_description_add").removeClass('is-valid');
+                $("#unidad_name_edit").val("");
+                $("#des_unidad_edit").val("");
+                
+                //Clear is valid class
+                $("#unidad_name_edit").removeClass('is-valid');
+                $("#des_unidad_edit").removeClass('is-valid');
 
-
-            }else {
-                Toast.fire({
+                // reload Users by using readRecords();
+                readRecordsUnidades();
+            }else if(datos.respuesta == "error"){
+                Swal.fire({
                     icon: 'error',
-                    title: 'Se produjo un error'
+                    title: 'Error',
+                    text: 'El proveedor ya existe',
+                    footer: 'Intenta nuevamente'
                   })
             }
-            
-
-    }); 
+           
+        }
+    )
 }
 
 $(document).ready(function () {
@@ -239,36 +336,37 @@ $(document).ready(function () {
     readRecordsProveedores(); // calling function
     readRecordsUnidades();
 
-    //Agregar sucusales y permisos al data toggle
-
-    var new_user=document.getElementById('new_material');
-    new_user.addEventListener("click", function () {
-        valores("consultaProveedor", "proveedor_add", 1);
-    })
-
 });
 
 
-//Validate Form add User
+//Validate Form PROVEEDORES
 
-$("#addForm_Materials").validate({
+$("#addForm_Proveedor").validate({
     rules: {      
-                material_name: {
+                proveedor_name: {
 				required: true,
 				minlength: 3
                 },
-                des_material_add: {
+                dir_proveedor_add:{
+                required: true,
+				minlength: 5
+                },
+                des_proveedor_add: {
 				required: true,
 				minlength: 5
                 },
 			},
 			messages: {
 				
-				material_name: {
+				proveedor_name: {
 				required: "Ingresa el nombre",
 				minlength: "El nombre es muy corto"
                 },
-                des_material_add: {
+                dir_proveedor_add: {
+				required: "Ingresa la dirección",
+				minlength: "La dirección es muy corta"
+                },
+                des_proveedor_add: {
 				required: "Ingresa la descripción",
 				minlength: "La descripción es muy corta"
                 },
@@ -287,81 +385,40 @@ $("#addForm_Materials").validate({
                 $(element).addClass('is-valid');
             },
             submitHandler: function (form) {
-                addRecord();
+                addRecordProveedor();
             }
 }
 );
 
-$("#edit_MaterialForm").validate({
+$("#edit_ProviderForm").validate({
     rules: {
-                  usernameEdit: {
-                      required: true,
-                      minlength: 5
-                  },
-                  nombre_usuarioEdit: {
-                      required: true,
-                      minlength:3
-                  },
-                  apellido_usuarioEdit: {
+                  proveedor_name_edit: {
                       required: true,
                       minlength: 3
                   },
-                  telefonoEdit: {
-                      required: true,
-                      minlength: 8,
-                      maxlength: 10,
-                      number: true
-                  },
-                  direccionEdit: {
+                  dir_proveedor_edit: {
                       required: true,
                       minlength: 5
                   },
-                  passwordEdit: {
-                      minlength: 8,
-                      required: function (element){
-                          return $("#customSwitch1").is(':checked');
-                      }
+                  des_proveedor_edit: {
+                      required: true,
+                      minlength: 5
                   },
-                  passwordConfirmEdit: {
-                    required: function (element){
-                        return $("#customSwitch1").is(':checked');
-                    },
-                      minlength: 8,
-                      equalTo: "#passwordEdit"
-                  }
+                  
               },
               messages: {
                   
-                  usernameEdit: {
-                      required: "Ingresa el nombre de usuario",
-                      minlength: "El nombre de usuario debe contener al menos 5 letras"
-                  },
-                  nombre_usuarioEdit: {
+                  proveedor_name_edit: {
                       required: "Ingresa el nombre",
-                      minlength: "El nombre debe tener por lo menos 3 letras"
+                      minlength: "El nombre es muy corto"
                   },
-                  apellido_usuarioEdit: {
-                      required: "Ingresa el apellido",
-                      minlength: "El apellido debe tener por lo menos 3 letras"
-                  },
-                  telefonoEdit: {
-                      required: "Ingresa el telefono",
-                      minlength: "El teléfono debe ser por lo menos de 8 dígitos",
-                      maxlength: "Dígitos permitidos excedidos",
-                      number: "Ingresa un número válido"
-                  },
-                  direccionEdit: {
+                  dir_proveedor_edit: {
                       required: "Ingresa la dirección",
-                      minlength: "La dirección es demasiado corta"
+                      minlength: "La dirección es muy corta"
                   },
-                  passwordEdit: {
-                      required: "Ingresa una contraseña",
-                      minlength: "La contraseña debe tener 8 letras y/o caracteres"
-                  },
-                  passwordConfirmEdit: {
-                      required: "Repite la contraseña",
-                      minlength: "La contraseña debe tener 8 letras y/o caracteres",
-                      equalTo: "Las contraseñas no coinciden"
+                  des_proveedor_edit: {
+                      required: "Ingresa la descripción",
+                      minlength: "La descripción es muy corta0,02"
                   },
               },
               errorElement: 'span',
@@ -378,41 +435,76 @@ $("#edit_MaterialForm").validate({
               },
               submitHandler: function (form) {
                 //form.submit();
-                UpdateUserDetails();
+                UpdateProveedorDetails();
             }, 
 }  
 );
 
-$("#provider_form").validate({
+//Validate Form UNIDADES
+
+$("#addForm_Unidades").validate({
+    rules: {      
+                unidad_name_add: {
+				required: true,
+				minlength: 3
+                },
+                des_unidad_add: {
+				required: true,
+				minlength: 5
+                },
+			},
+			messages: {
+				
+				unidad_name_add: {
+				required: "Ingresa el nombre",
+				minlength: "El nombre es muy corto"
+                },
+                des_unidad_add: {
+				required: "Ingresa la descripción",
+				minlength: "La descripción es muy corta"
+                },
+                
+			},
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
+            },
+            submitHandler: function (form) {
+                addRecordUnidad();
+            }
+}
+);
+
+$("#edit_UnidadForm").validate({
     rules: {
-                    provider_name_add: {
-                    required: true,
-                    minlength: 2
-                    },
-                    provider_dir_add: {
-                    required: true,
-                    minlength: 5
-                    },
-                    provider_description_add: {
-                    required: true,
-                    minlength: 5
+                  unidad_name_edit: {
+                      required: true,
+                      minlength: 3
                   },
+                  des_unidad_edit: {
+                      required: true,
+                      minlength: 5
+                  },
+                  
               },
               messages: {
                   
-                    provider_name_add: {
-                    required: "Ingresa el nombre del proveedor",
-                    minlength: "El nombre del proveedor es muy corto"
-                    },
-                    provider_dir_add: {
-                    required: "Ingresa la dirección",
-                    minlength: "La dirección es muy corta"
-                    },
-                    provider_description_add: {
-                    required: "Ingresa la descripción",
-                    minlength: "La descripción es muy corta"
-                },
-                  
+                unidad_name_edit: {
+                      required: "Ingresa el nombre",
+                      minlength: "El nombre es muy corto"
+                  },
+                  des_unidad_edit: {
+                      required: "Ingresa la descripción",
+                      minlength: "La descripción es muy corta0,02"
+                  },
               },
               errorElement: 'span',
               errorPlacement: function (error, element) {
@@ -427,9 +519,7 @@ $("#provider_form").validate({
                   $(element).addClass('is-valid');
               },
               submitHandler: function (form) {
-                  //$(element).removeClass('is-valid');
-                  Add_Provider();
-                  
+                //form.submit();
+                UpdateUnidadDetails();
             }, 
-}  
-  );
+} );

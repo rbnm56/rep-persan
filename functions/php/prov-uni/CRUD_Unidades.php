@@ -7,14 +7,13 @@ $funcionGET= $_GET['funcion'];
 if(isset($_POST) && $funcionPOST == "addRecord"){
     // get values 
 
-    $material_name = $_POST['material_name'];
-    $des_material_add = $_POST['des_material_add'];
-    $proveedor_add = ((int)$_POST['proveedor_add']) + 1;
+    $unidad_name_add = $_POST['unidad_name_add'];
+    $des_unidad_add = $_POST['des_unidad_add'];
 
     try{
         // include Database connection file
         include_once("../../../dist/db/functions.php");
-        $query = "INSERT INTO materiales(nombre_material, descripcion_material, id_proveedor) VALUES('$material_name', '$des_material_add', $proveedor_add)";
+        $query = "INSERT INTO unidades (nombre_unidad, descripcion_unidad) VALUES('$unidad_name_add', '$des_unidad_add')";
         
         if ($connect->query($query) == TRUE) {
             $response = [
@@ -39,15 +38,23 @@ elseif($funcionGET == "readRecords"){
     $connect->close();
 } 
 //Delete Records
-elseif($funcionPOST == "DeleteMaterial" && isset($_POST['id']) && isset($_POST['id']) != "")
+elseif($funcionPOST == "Delete" && isset($_POST['id']) && isset($_POST['id']) != "")
 {
 
     // get user id
-    $material_id = $_POST['id'];
+    $unidad_id = $_POST['id'];
     // delete User
     try{
         include_once("../../../dist/db/functions.php");
-        $query = "DELETE FROM materiales WHERE material_id = '$material_id'";
+
+        $queryProd = "UPDATE productos SET id_unidad= NULL WHERE id_unidad = '$unidad_id'";
+
+        if ($connect->query($queryProd) === TRUE) {
+            $response = [
+                'producto' => 'exito'
+            ];
+          }
+        $query = "DELETE FROM unidades WHERE unidad_id = '$unidad_id'";
 
         if ($connect->query($query) === TRUE) {
             $response = [
@@ -65,18 +72,18 @@ elseif($funcionPOST == "DeleteMaterial" && isset($_POST['id']) && isset($_POST['
     }
 }
 //Show records to Edit
-else if($funcionPOST == "GetMaterialDetails"){
+else if($funcionPOST == "GetDetails"){
 
 // check request
     if(isset($_POST['id']) && isset($_POST['id']) != "")
     {
         // get User ID
-        $material_id = $_POST['id'];
+        $unidad_id = $_POST['id'];
 
         // Get User Details
         include_once("../../../dist/db/functions.php");
         try{
-            $query = "SELECT * FROM materiales INNER JOIN proveedores ON materiales.id_proveedor = proveedores.proveedor_id WHERE material_id = '$material_id' ";
+            $query = "SELECT * FROM unidades WHERE unidad_id = '$unidad_id' ";
 
             $response = array();
 
@@ -111,21 +118,20 @@ else if($funcionPOST == "GetMaterialDetails"){
     }
 } 
 // Update records
-elseif($funcionPOST == "UpdateMaterialDetails"){
+elseif($funcionPOST == "UpdateDetails"){
 
 // check request
     if(isset($_POST))
     {
         // get values
         $id = $_POST['id'];
-        $material_name_edit = $_POST['material_name_edit'];
-        $des_material_edit = $_POST['des_material_edit'];
-        $proveedor_edit = ((int)$_POST['proveedor_edit']) +1;
+        $unidad_name_edit = $_POST['unidad_name_edit'];
+        $des_unidad_edit = $_POST['des_unidad_edit'];
 
         // Update User details
         try{
             include_once("../../../dist/db/functions.php");
-            $query = "UPDATE materiales SET nombre_material='$material_name_edit', descripcion_material='$des_material_edit', id_proveedor='$proveedor_edit' WHERE material_id = '$id'";
+            $query = "UPDATE unidades SET nombre_unidad='$unidad_name_edit', descripcion_unidad='$des_unidad_edit' WHERE unidad_id = '$id'";
 
             if ($connect->query($query) === TRUE) {
                 $response = [
@@ -142,32 +148,6 @@ elseif($funcionPOST == "UpdateMaterialDetails"){
             echo "Error: " . $e->getMessage(); 
         }
     }
-}
-
-if(isset($_POST) && $funcionPOST == "addRecordProvider"){
-    // get values 
-    $provider_name_add = $_POST['provider_name_add'];
-    $provider_dir_add = $_POST['provider_dir_add'];
-    $provider_description_add = $_POST['provider_description_add'];
-
-    try{
-
-        // include Database connection file
-        include_once("../../../dist/db/functions.php");
-        $query = "INSERT INTO proveedores (nombre_proveedor, direccion_proveedor, descripcion_proveedor) VALUES('$provider_name_add','$provider_dir_add', '$provider_description_add')";
-        
-        if ($connect->query($query) == TRUE) {
-            $response ['respuesta'] = "exito";
-          } else {
-            $response ['respuesta'] = "error";
-          }
-        echo json_encode($response);
-
-        $connect->close();
-   }catch (Exception $e){
-       // echo "Error: " . $e->getMessage();
-    }
-    
 }
 
 ?> 

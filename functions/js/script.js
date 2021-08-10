@@ -10,7 +10,7 @@ function valores(consulta, opcion, ID) {
             // PARSE json data
             result = JSON.parse(data);
             var newOptions = result.nombre;
-            var selectedOption = (ID-1)
+            var selectedOption = (ID)
             var select = $('#' + opcion + '');
             if(select.prop) {
             var options = select.prop('options');
@@ -19,9 +19,10 @@ function valores(consulta, opcion, ID) {
             var options = select.attr('options');
             }
             $('option', select).remove();
-
+            var i = 0;
             $.each(newOptions, function (val, text) {
-                options[options.length] = new Option(text, val);
+                options[options.length] = new Option(text, result.id[i]);
+                i++;
             });
             select.val(selectedOption);
             

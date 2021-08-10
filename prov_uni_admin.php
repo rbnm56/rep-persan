@@ -19,7 +19,7 @@
           <div class="col-md-3">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Proveedores - Unidades</li>
+              <li class="breadcrumb-item active">Otros</li>
             </ol>
           </div>
         </div>
@@ -37,7 +37,7 @@
                     <h3 class="card-title">Lista de Proveedores</h3>
                   </div>
                   <div class="col-sm-6">
-                      <button id="new_material" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#new_material_modal">
+                      <button id="new_material" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#new_proveedor_modal">
                         <i class="fas fa-plus" ></i>
                         <b>Añadir Proveedor</b> 
                       </button> 
@@ -61,7 +61,7 @@
                     <h3 class="card-title">Lista de Unidades</h3>
                   </div>
                   <div class="col-sm-6">
-                      <button id="new_material" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#new_material_modal">
+                      <button id="new_material" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#new_unity_modal">
                         <i class="fas fa-plus" ></i>
                         <b>Añadir Unidad</b> 
                       </button> 

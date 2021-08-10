@@ -9,8 +9,8 @@ if(isset($_POST) && $funcionPOST == "addRecordItem"){
     $item_name = $_POST['item_name'];
     $item_price = $_POST['item_price'];
     $item_description = $_POST['item_description'];
-    $item_unity = ((int)$_POST['item_unity']) + 1;
-    $item_provider = ((int)$_POST['item_provider']) + 1;
+    $item_unity = ((int)$_POST['item_unity']);
+    $item_provider = ((int)$_POST['item_provider']);
     $materiales = (array) $_POST['materials_array'];
 
     $total_mat = count($materiales);
@@ -129,7 +129,7 @@ else if($funcionPOST == "GetItemDetails"){
         // Get item Details
         include_once("../../../dist/db/functions.php");
         try{
-            $query = "SELECT * FROM productos INNER JOIN unidades ON productos.id_unidad = unidades.unidad_id INNER JOIN proveedores ON productos.id_proveedor = proveedores.proveedor_id WHERE producto_id = '$item_id' ";
+            $query = "SELECT * FROM productos LEFT JOIN unidades ON productos.id_unidad = unidades.unidad_id LEFT JOIN proveedores ON productos.id_proveedor = proveedores.proveedor_id WHERE producto_id = '$item_id' ";
 
             $response = array();
 
@@ -174,8 +174,8 @@ elseif($funcionPOST == "UpdateItemDetails"){
         $item_name = $_POST['item_name'];
         $item_price = $_POST['item_price'];
         $item_description = $_POST['item_description'];
-        $item_unity = ((int)$_POST['item_unity']) +1;
-        $item_provider = ((int)$_POST['item_provider']) +1;
+        $item_unity = ((int)$_POST['item_unity']);
+        $item_provider = ((int)$_POST['item_provider']);
     
         // Update item details
         try{

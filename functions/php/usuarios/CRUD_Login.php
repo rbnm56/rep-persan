@@ -12,8 +12,8 @@ if(isset($_POST) && $funcionPOST == "addRecord"){
     $apellido_usuario = $_POST['apellido_usuario'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
-    $sucursal = ((int)$_POST['sucursal']) + 1;
-    $permiso = ((int)$_POST['permiso']) + 1;
+    $sucursal = ((int)$_POST['sucursal']);
+    $permiso = ((int)$_POST['permiso']);
     
     $opciones = array(
         'cost' => 12
