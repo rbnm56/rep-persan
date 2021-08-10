@@ -67,7 +67,7 @@
            </ul>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="users-admin.php" class="nav-link">
+               <a href="clientes.php" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Clientes</p>
                </a>
