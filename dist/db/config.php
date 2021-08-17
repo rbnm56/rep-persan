@@ -2,6 +2,7 @@
 mysqli_report(MYSQLI_REPORT_STRICT);
 try{
     $connect = new mysqli('localhost', 'root', '', 'persanv1');
+    //$connect = new mysqli('localhost', 'root', 'root', 'persanv1');
 
 }catch(Exception $e){
     echo 'ERROR:'.$e->getMessage();
