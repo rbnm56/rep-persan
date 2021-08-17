@@ -26,21 +26,6 @@
       </div><!-- /.container-fluid -->
     </section>
 
-<?php
-// include Database connection file 
-
-$id = $_SESSION['id'];
-
-$query = "SELECT * FROM usuarios LEFT JOIN sucursales ON usuarios.id_sucursal = sucursales.sucursal_id LEFT JOIN permisos ON usuarios.id_permiso = permisos.permiso_id WHERE usuario_id = $id";
-
-if (!$result = mysqli_query($connect, $query)) {
-    exit(mysqli_error($connect));
-};
-if(mysqli_num_rows($result) > 0){
-    	$row = mysqli_fetch_assoc($result);
-    }
-?>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -55,22 +40,13 @@ if(mysqli_num_rows($result) > 0){
                        alt="User profile picture">
                 </div>
 
-                <p class="text-muted text-center">
-                    <?php
-                    echo $row['username'];
-                    ?>
+                <p class="text-muted text-center" id="username_left">
                 </p>
 
-                <h3 class="profile-username text-center">
-                    <?php
-                    echo $row['nombre_usuario'].' '.$row['apellido_usuario'];
-                    ?>
+                <h3 class="profile-username text-center" id="nombre_left">
                 </h3>
                
-                <p class="text-muted text-center">
-                    <?php
-                    echo $row['nombre_permiso'];
-                    ?>
+                <p class="text-muted text-center" id="permiso_left">
                 </p>
 
                 
@@ -87,45 +63,97 @@ if(mysqli_num_rows($result) > 0){
               <div class="card-header p-2">
                 <h3 class="nav-link">Datos personales</h3>
               </div><!-- /.card-header -->
+              
               <div class="card-body">
                 <div class="tab-content">
                   <div>
-                    <form class="form-horizontal">
+                    <div class="row">
+                      <div class="col-sm-9">
+
+                      </div>
+                      <div class="col-sm-3 form-group">
+                        <div class="custom-control custom-switch float-sm-right">
+                            <input type="checkbox" class="custom-control-input" id="Switch_profile_edit">
+                            <label class="custom-control-label" for="Switch_profile_edit">Editar</label>
+                        </div>
+                      </div>
+                    </div>
+                    <form id="editForm_profile" method="get" action="">
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputUsername" value = <?php echo $row['username']; ?> placeholder="Username" disabled>
+                          <input type="text" class="form-control" id="inputUsername" name="inputUsername" disabled>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName"  value = <?php echo $row['nombre_usuario']; ?> placeholder="Nombre" disabled>
+                          <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Nombre" disabled>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputApellido" value = <?php echo $row['apellido_usuario']; ?> placeholder="Apellido" disabled>
+                          <input type="text" class="form-control" id="inputApellido" name="inputApellido" placeholder="Apellido" disabled>
                         </div>
                       </div>
+                      <div class="row" id="switch_profile_div">
+                        <div class="col-sm-12 form-group">
+                            <div class="custom-control custom-switch">
+                              <input type="checkbox" class="custom-control-input" id="pass_profile_switch" name="pass_profile_switch">
+                              <label class="custom-control-label" for="pass_profile_switch">Cambiar Contraseña</label>
+                            </div>
+                        </div>
+                      </div>
+                    <div id="pass_profile_div">
+                      <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
+                        <div class="col-sm-4">
+                          <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña" disabled>
+                        </div>
+                        <div class="col-sm-2">
+                          <label for="inputPassword_repeat">Repetir Contraseña</label>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="password" class="form-control" id="inputPassword_repeat" name="inputPassword_repeat" placeholder="Repetir Contraseña" disabled>
+                        </div>
+                      </div>
+                    </div>
                       <div class="form-group row">
                         <label for="inputTelefono" class="col-sm-2 col-form-label">Teléfono</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputTelefono"  value = <?php echo $row['telefono']; ?> placeholder="Telefono" disabled>
+                          <input type="number" class="form-control" id="inputTelefono" name="inputTelefono" placeholder="Telefono" disabled>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputDireccion" class="col-sm-2 col-form-label">Dirección</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="inputDireccion" placeholder="Dirección" disabled><?php echo $row['direccion']; ?> </textarea>
+                          <textarea class="form-control" id="inputDireccion" name="inputDireccion" placeholder="Dirección" disabled> </textarea>
                         </div>
                       </div>
-                      <!-- <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Enviar</button>
+                      <div class="form-group row">
+                        <label for="inputSucursal" class="col-sm-2 col-form-label">Sucursal</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="inputSucursal" name="inputSucursal" disabled>
+                            <option></option>
+                          </select>
                         </div>
-                      </div> -->
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPermiso" class="col-sm-2 col-form-label">Permiso</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="inputPermiso" name="inputPermiso" disabled>
+                            <option></option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-10 col-sm-10">
+                        <button id="button_profile_edit" type="submit" class="btn btn-primary submit" value="Submit">Guardar</button>
+                          <input type="text" id="hidden_id_profile" hidden value=<?php echo $_SESSION['id']; ?>>
+                          
+                        </div>
+                      </div>
                     </form>
                   </div>
                   <!-- /.tab-pane -->
@@ -143,8 +171,6 @@ if(mysqli_num_rows($result) > 0){
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-<!-- MODALS users -->
   <!-- Main Footer -->
   <?php
     //  <!-- Control Sidebar -->
@@ -152,7 +178,7 @@ if(mysqli_num_rows($result) > 0){
     //  <!-- Footer-->
     include_once 'templates/footer.php';
 
-    
-    
   ?>
 
+<script src="functions/js/profile-ajax.js"></script>
+<script src="functions/js/script.js"></script>

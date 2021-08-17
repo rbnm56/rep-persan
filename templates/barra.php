@@ -1,4 +1,10 @@
-
+<style>
+  @media screen and (max-width: 700px) {
+  #name_responsive{
+    display:none;
+  }
+  }
+</style>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <div class="wrapper">
@@ -46,7 +52,7 @@
       <li class="nav-item dropdown user-menu">
       <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>
-          <span class="badge">
+          <span class="badge" id="name_responsive">
             <?php
               echo $_SESSION['nombre'];
             ?>

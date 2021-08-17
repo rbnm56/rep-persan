@@ -72,8 +72,6 @@
     include_once 'templates/sidebar-right.php';
     //  <!-- Footer-->
     include_once 'templates/footer.php';
-
-    
     
   ?>
 
