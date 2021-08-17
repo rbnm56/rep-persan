@@ -92,6 +92,7 @@ function edit_profile_true() {
     $('#inputDireccion').prop('disabled', false);
 }
 
+
 function edit_profile_false() {
     //oculta el boton para enviar la edicion
     $('#button_profile_edit').hide();
