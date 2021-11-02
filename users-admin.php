@@ -10,60 +10,72 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row sm-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Administración de Usuarios</h1>
-          </div><!-- /.col -->
+            <h1>Administración de Empleados</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item active">Usuarios</li>
+              <li class="breadcrumb-item active">Empleados</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
 
-    <!-- Main content -->
-    <div class="card">
-      <div class="row card-header">
-        <div class="col-sm-10">
-          <h3 class="card-title">Lista de Usuarios</h3>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-9">
+                    <h3 class="card-title">Lista de Empleados</h3>
+                  </div>
+                  <div class="col-sm-3">
+                      <button id="new_user" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
+                        <i class="fas fa-plus" ></i>
+                        <b>Añadir Empleado</b> 
+                      </button> 
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <span id="records_content"></span>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
         </div>
-        
-        <div class="col-sm-2">
-          <button class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#add_new_record_modal">
-            <i class="fas fa-plus" ></i>
-            <b>Añadir Usuario</b> 
-          </button> 
-        </div>
+        <!-- /.row -->
       </div>
-      <!-- /.card-header -->
-      <div class="row">
-        <div class="col-md-12">
-          <div id="records_content"></div>
-        </div>
-      </div>
-    </div>
+      <!-- /.container-fluid -->
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-<!-- MODALSaq à`å§lñ34h -->
-<?php
-include_once('functions/php/modalsUsers.php');
-?>
+<!-- MODALS users -->
   <!-- Main Footer -->
   <?php
+
+    include_once('functions/php/usuarios/modalsUsers.php');
+  
     //  <!-- Control Sidebar -->
     include_once 'templates/sidebar-right.php';
     //  <!-- Footer-->
-    include_once 'templates/footer.php'
+    include_once 'templates/footer.php';
+    
   ?>
 
 
-
-
+<!-- Admin AJAX -->
+<script src="functions/js/admin-ajax.js"></script>
+<script src="functions/js/script.js"></script>

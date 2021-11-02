@@ -1,4 +1,12 @@
-<body class="hold-transition sidebar-mini">
+<style>
+  @media screen and (max-width: 700px) {
+  #name_responsive{
+    display:none;
+  }
+  }
+</style>
+
+<body class="hold-transition sidebar-mini layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -44,21 +52,29 @@
       <li class="nav-item dropdown user-menu">
       <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>
-          <span class="badge">Usuario</span>
+          <span class="badge" id="name_responsive">
+            <?php
+              echo $_SESSION['nombre'];
+            ?>
+          </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="dist/img/user1-256x256.png" class="img-circle elevation-2" alt="User Image">
 
             <p>
-              Usuario
-              <small>Administrador</small>
+            <?php
+              echo $_SESSION['nombre'];
+            ?>
+              <small><?php
+              echo $_SESSION['username'];
+            ?></small>
             </p>
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            <a href="#" class="btn btn-default btn-flat"><i class="fas fa-cog"></i> Perfil</a>
+            <a href="profile.php" class="btn btn-default btn-flat"><i class="fas fa-cog"></i> Perfil</a>
             <a href="login.php?cerrar_sesion=true" class="btn btn-default btn-flat float-right"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
           </li>
         </ul>

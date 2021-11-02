@@ -13,13 +13,10 @@
    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
-  <link rel="stylesheet" href="dist/css/estilos.css">
-  <!-- JsGrid -->
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css">
-  <link rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css">
 </head>

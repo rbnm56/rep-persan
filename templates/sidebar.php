@@ -11,10 +11,14 @@
      <!-- Sidebar user panel (optional) -->
      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
        <div class="image">
-         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+         <img src="dist/img/images-white.png" class="img-circle elevation-2" alt="User Image">
        </div>
        <div class="info">
-         <a href="#" class="d-block">Administrador</a>
+         <a href="profile.php" class="d-block">
+           <?php
+            echo $_SESSION['nombre'];
+            ?>
+         </a>
        </div>
      </div>
 
@@ -35,7 +39,15 @@
        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         <li class="nav-item menu-open">
+         <li class="nav-item">
+           <a href="admin.php" class="nav-link">
+             <i class="nav-icon fa fa-home"></i>
+             <p>
+               Inicio
+             </p>
+           </a>
+         </li>
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-users"></i>
              <p>
@@ -46,72 +58,83 @@
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="users-admin.php" class="nav-link">
-                 <i class="far fa-tools nav-icon"></i>
-                 <p> Administración</p>
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Empleados</p>
                </a>
              </li>
+           </ul>
+           <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
+               <a href="clientes.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Clientes</p>
                </a>
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-user-circle"></i>
+             <i class="nav-icon fas fa-clipboard-list"></i>
              <p>
-               Clientes
+               Productos
                <i class="right fas fa-angle-left"></i>
              </p>
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="clientes.php" class="nav-link">
-               <i class="far fas fa-list-ol nav-icon"></i>
+                 <i class="far fas fa-list-ol nav-icon"></i>
                  <p> Mostrar</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="items-admin.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p> Productos</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="materials-admin.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Materiales</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="prov_uni_admin.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Otros</p>
                </a>
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
-           <a href="ventas.php" class="nav-link">
-             <i class="nav-icon fas fa-dollar-sign"></i>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="nav-icon fa fa-dollar-sign"></i>
              <p>
                Ventas
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
-         </li>
-         <li class="nav-item menu-open">
-           <a href="#" class="nav-link">
-             <i class="nav-icon far fa-file-alt"></i>
-             <p>
-               Reportes
                <i class="right fas fa-angle-left"></i>
              </p>
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
                <a href="#" class="nav-link">
-                 <i class="far fa-tools nav-icon"></i>
-                 <p> Administración</p>
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Inventario</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
+               <a href="ventas.php" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Ventas</p>
                </a>
              </li>
            </ul>
          </li>
-         <li class="nav-item menu-open">
+         <li class="nav-item">
            <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-clipboard-list"></i>
+             <i class="nav-icon fa fa-cash-register"></i>
              <p>
-               Inventario
+               Caja
                <i class="right fas fa-angle-left"></i>
              </p>
            </a>
@@ -124,20 +147,19 @@
              </li>
              <li class="nav-item">
                <a href="#" class="nav-link">
-                 <i class="far fa-chart-pie nav-icon"></i>
-                 <p> Reportes</p>
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Vender</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="#" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Salidas</p>
                </a>
              </li>
            </ul>
          </li>
-         <li class="nav-item">
-           <a href="caja.php" class="nav-link">
-             <i class="nav-icon fas fa-plus"></i>
-             <p>
-               Caja
-             </p>
-           </a>
-         </li>
+
        </ul>
      </nav>
      <!-- /.sidebar-menu -->
